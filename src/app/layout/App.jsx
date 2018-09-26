@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavBar from '../../features/Nav/NavBar/NavBar';
 
 
 class App extends Component {
@@ -6,6 +7,7 @@ class App extends Component {
     return (
         <div>
           <h1>Foodbites</h1>
+          <NavBar/>
         </div>
      );
   }
