@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import DishesListItem from './DishesListItem';
-
+import DishesListItem from '../DishesList/DishesListItem';
+const {dishes} = this.props;
 class DishesList extends Component {
   render() {
-    const {dishes} = this.props;
+    
     return (
       <div>
         
