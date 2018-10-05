@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Button } from 'semantic-ui-react';
+import { Grid} from 'semantic-ui-react';
 import DishesList from '../DishesList/DishesList';
 //import EventForm from '../EventForm/EventForm';
 
-const DishDashboard = [
+const DishDash = [
   {
     id: '1',
     title: 'Paav Bhaaji',
@@ -39,7 +39,7 @@ class DishDashboard extends Component {
     return (
       <Grid>
         <Grid.Column width={10}>
-          <DishesList Dishes={this.state.DishDashboard} />
+          <DishesList dishes={DishDash} />
         </Grid.Column>
 
       </Grid>

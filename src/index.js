@@ -7,12 +7,12 @@ import 'semantic-ui-css/semantic.min.css';
 const rootEl= document.getElementById('root');
 let render = () => {
     ReactDOM.render(<App />,rootEl);
-}
+};
 
 if(module.hot){
     module.hot.accept('./app/layout/App',() => {
-        setTimeout(render)
-    })
+        setTimeout(render);
+    });
 }
 
 render();

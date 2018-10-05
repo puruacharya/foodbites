@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../../features/Nav/NavBar/NavBar';
-import SearchBar from '../../features/Search/SearchBar/SearchBar'
-import DishesList from '../../features/Dishes/DishesList/DishesList';
+import SearchBar from '../../features/Search/SearchBar/SearchBar';
+import DishDashboard from '../../features/Dishes/DishDashboard/DishDashboard';
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
         
           <NavBar/>
           <SearchBar/>  
-          <DishesList/>
+          <DishDashboard/>
         </div>
      );
   }
