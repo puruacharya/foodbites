@@ -42,7 +42,7 @@ class SearchBar extends Component{
               </Form>
             </Segment>
 
-        )
+        );
     }
 }
 
