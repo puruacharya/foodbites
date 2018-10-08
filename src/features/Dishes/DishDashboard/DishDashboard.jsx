@@ -38,7 +38,7 @@ class DishDashboard extends Component {
   render() {
     return (
       <Grid>
-        <Grid.Column width={10}>
+        <Grid.Column width={16}>
           <DishesList dishes={DishDash} />
         </Grid.Column>
 
