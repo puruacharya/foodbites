@@ -13,7 +13,7 @@ const HomePage = ({history}) => {
             />
             <div className="content">FoodBites</div>
           </h1>
-          <h2>Eat what you love </h2>
+          <h2>Eat what you love</h2>
           <div onClick={() => history.push('/dishdashboard')} className="ui huge white inverted button">
             Get Started
             <i className="right arrow icon" />

@@ -17,7 +17,7 @@ const SignedInMenu = ({ signOut }) => {
         </Dropdown.Menu>
       </Dropdown>
     </Menu.Item>
-  )
-}
+  );
+};
 
 export default SignedInMenu;
