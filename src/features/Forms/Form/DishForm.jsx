@@ -1,44 +1,43 @@
 import React, { Component } from 'react';
 import {Segment, Form ,Button} from 'semantic-ui-react';
 
-    
-    
-  
 
 
-class SearchBar extends Component{
+class DishForm extends Component{
     render() {
+      const {handleCancel} = this.props;
+      //const {event} = this.state;
         return(
             <Segment>
-              <Form>
+              <Form onSubmit={this.onFormSubmit}>
                 <Form.Field>
                   <label>First Name</label>
-                  <input placeholder="First Name" />
+                  <input name="fname" placeholder="First Name" />
                 </Form.Field>
                 <Form.Field>
                   <label>Last Name</label>
-                  <input placeholder="Last Name" />
+                  <input name="lname" placeholder="Last Name" />
                 </Form.Field>
                 <Form.Field>
                   <label>DOB</label>
-                  <input type="date" />
+                  <input name="dob"type="date" />
                 </Form.Field>
                 <Form.Field>
                   <label>Address</label>
-                  <input placeholder="Enter the Address" />
+                  <input name="address" placeholder="Enter the Address" />
                 </Form.Field>
                 <Form.Field>
                   <label>Username</label>
-                  <input placeholder="Enter the Username" />
+                  <input name="uname"placeholder="Enter the Username" />
                 </Form.Field>
                 <Form.Field>
                   <label>Password</label>
-                  <input placeholder="Enter the Password" />
+                  <input name="pass"placeholder="Enter the Password" />
                 </Form.Field>
                 <Button positive type="submit">
                   Submit
                 </Button>
-                <Button type="button">Cancel</Button>
+                <Button onClick={handleCancel} type="button" >Cancel</Button>
               </Form>
             </Segment>
 
@@ -46,4 +45,4 @@ class SearchBar extends Component{
     }
 }
 
-export default SearchBar;
+export default DishForm;

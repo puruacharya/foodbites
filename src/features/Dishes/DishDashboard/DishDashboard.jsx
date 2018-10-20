@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Grid} from 'semantic-ui-react';
+import { Grid, Button} from 'semantic-ui-react';
 import DishesList from '../DishesList/DishesList';
-//import EventForm from '../EventForm/EventForm';
+import DishForm from '../../Forms/Form/DishForm';
 
 const DishDash = [
   {
@@ -32,14 +32,38 @@ const DishDash = [
 ];
 
 class DishDashboard extends Component {
+constructor(props){
+  
+  super(props);
+  this.state={
+    dish: DishDash,
+    isOpen: false
+  };
+  this.handleFormOpen = this.handleFormOpen.bind(this);
+}
+handleFormOpen(){
+  this.setState({
+    isOpen:true
+  });
+}
+
+handleCancel = () => {
+  this.setState({
+    isOpen: false
+  });
+};
 
 
 
   render() {
     return (
       <Grid>
-        <Grid.Column width={16}>
+        <Grid.Column width={10}>
           <DishesList dishes={DishDash} />
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Button positive content='Sign Up'onClick={this.handleFormOpen}/>
+          {this.state.isOpen && <DishForm handleCancel={this.handleCancel}/>} 
         </Grid.Column>
 
       </Grid>

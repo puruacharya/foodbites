@@ -30,7 +30,11 @@ class NavBar extends Component {
             Foodbites
                       </Menu.Item>
           <Menu.Item name="Dishes" />
-          <Menu.Item>
+         
+          <Menu.Item as={NavLink} to='/testpage'>TestPage</Menu.Item>
+            
+            <Menu.Item>
+
             {authenticated &&
               <Button floated="right" positive inverted content="View My Cart/Wishlist" />}
           </Menu.Item>
