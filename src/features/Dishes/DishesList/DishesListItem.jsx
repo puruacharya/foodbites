@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Segment, Item, Button } from 'semantic-ui-react';
 class DishesListItem extends Component {
   render() {
-    const {dishes} = this.props;
+    const {dishes,onDishOpen, deleteDish } = this.props;
     return (
       <Segment.Group>
         <Segment>
@@ -21,8 +21,9 @@ class DishesListItem extends Component {
  
         <Segment clearing>
         <span>{dishes.description}</span>
-          <Button as="a" color="teal" floated="right" content="View" />
-        </Segment>
+        <Button onClick={deleteDish(dishes.id)} as="a" color="red" floated="right" content="Delete" />
+        <Button onClick={onDishOpen(dishes)} as="a" color="teal" floated="right" content="View" />
+          </Segment>
       </Segment.Group>
     );
   }

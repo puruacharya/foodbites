@@ -2,77 +2,77 @@ import React, { Component } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
 
 const emptyForm = {
-  fname:'',
-  lname:'',
-  dob:'',
-  address:'',
-  uname:'',
-  pass:''
+  fname: '',
+  lname: '',
+  dob: '',
+  address: '',
+  uname: '',
+  pass: ''
 }
 
 class PeopleForm extends Component {
- state = {
-    People: emptyForm
- }
- componentDidMount() {
-   if(this.props.selectedPeople !== null){
-     this.setState({
-       People:this.props.selectedPeople
-     })
-   }
- }
- componentWillReceiveProps(nextProps){
-   if(nextProps.selectedPeople !== this.props.selectedPeople){
-     this.setState({
-       People : nextProps.selectedPeople || emptyForm
-     })
-   }
- }
-  onFormSubmit = (ppl) => {
-    ppl.preventDefault();
-    if(this.state.People.id){
-      this.props.updatePeople(this.state.People);
-
-    }else{
-    this.props.createPeople(this.state.People);
+  state = {
+    people: emptyForm
+  };
+  componentDidMount() {
+    if (this.props.selectedPeople !== null) {
+      this.setState({
+        people: this.props.selectedPeople
+      })
     }
   }
-  onInputChage = (ppl) => {
-    const People = this.state.People;
-    People[ppl.target.name] = ppl.target.value;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedPeople !== this.props.selectedPeople) {
+      this.setState({
+        people: nextProps.selectedPeople || emptyForm
+      })
+    }
+  }
+  onFormSubmit = (ppl) => {
+    ppl.preventDefault();
+    if (this.state.people.id) {
+      this.props.updatePeople(this.state.people);
+
+    } else {
+      this.props.createPeople(this.state.people);
+    }
+  }
+  onInputChange = (ppl) => {
+    const newPeople = this.state.people;
+    newPeople[ppl.target.name] = ppl.target.value;
     this.setState({
-      People : People
+      people: newPeople
     })
   }
   render() {
     const { handleCancel } = this.props;
-    const {People} = this.state;
+    const { people } = this.state;
     return (
       <Segment>
         <Form onSubmit={this.onFormSubmit}>
           <Form.Field>
             <label>First Name</label>
-            <input name="fname" onChange={this.onInputChange} value={People.fname} placeholder="First Name" />
+            <input name="fname" onChange={this.onInputChange} value={people.fname} placeholder="First Name" />
           </Form.Field>
           <Form.Field>
             <label>Last Name</label>
-            <input name="lname" onChange={this.onInputChange} value={People.lname}placeholder="Last Name" />
+            <input name="lname" onChange={this.onInputChange} value={people.lname} placeholder="Last Name" />
           </Form.Field>
           <Form.Field>
             <label>DOB</label>
-            <input name="dob" type="date" onChange={this.onInputChange} value={People.dob}/>
+            <input name="dob" type="date" onChange={this.onInputChange} value={people.dob} />
           </Form.Field>
           <Form.Field>
             <label>Address</label>
-            <input name="address" placeholder="Enter the Address" onChange={this.onInputChange} value={People.address}/>
+            <input name="address" placeholder="Enter the Address" onChange={this.onInputChange} value={people.address} />
           </Form.Field>
           <Form.Field>
             <label>Username</label>
-            <input name="uname" placeholder="Enter the Username" onChange={this.onInputChange} value={People.uname}/>
+            <input name="uname" placeholder="Enter the Username" onChange={this.onInputChange} value={people.uname} />
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input name="pass" placeholder="Enter the Password" onChange={this.onInputChange} value={People.pass}/>
+            <input name="pass" placeholder="Enter the Password" onChange={this.onInputChange} value={people.pass} />
           </Form.Field>
           <Button positive type="submit" >
             Submit

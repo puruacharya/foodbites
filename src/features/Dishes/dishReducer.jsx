@@ -31,12 +31,12 @@ const initialState = [
     }
   ];
   
-export const createEvent = (state, payload) => {
+export const createDish = (state, payload) => {
     return [...state, Object.assign({},payload.dish) ];
 } ;
 
 
-export const updateEvent = (state, payload) => {
+export const updateDish = (state, payload) => {
     return [
         ...state.filter(dish => dish.id !== payload.dish.id),
         Object.assign({}, payload.dish)
@@ -44,11 +44,11 @@ export const updateEvent = (state, payload) => {
 };
 
 
-export const deleteEvent = (state, payload) => {
-    return [...state.filter(dish => dish.id !== payload.dish.id)];
+export const deleteDish = (state, payload) => {
+    return [...state.filter(dish => dish.id !== payload.dishId)];
 } ;
 
-export default createReducer(initialState,{
+export default createReducer(initialState, {
     [CREATE_DISH]: createDish,
     [UPDATE_DISH]: updateDish,
     [DELETE_DISH]: deleteDish

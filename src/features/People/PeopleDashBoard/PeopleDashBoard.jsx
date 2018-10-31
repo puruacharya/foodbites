@@ -8,11 +8,11 @@ import cuid from 'cuid';
 const People = [
   {
     id: '1',
-    name: 'Raj Singh',
-
+    fname: 'Raj',
+    lname: 'Singh',
     Nationality: 'Indian',
-    dob: '20/05/1996',
-    city: 'Indore',
+    dob: '05/20/1996',
+    city: 'Indore', 
     address: 'I/147 l.i.g. colony',
     uname: 'puru',
     pass: '12345'
@@ -39,7 +39,7 @@ class PeopleDashboard extends Component {
       selectedPeople : null,
       isOpen: true
     });
-  }
+  };
 
   handleCancel = () => {
     this.setState({
@@ -49,7 +49,7 @@ class PeopleDashboard extends Component {
 
   handleUpdatePeople = (updatedPeople) => {
     this.setState({
-      People: this.state.People.map(People => {
+      people: this.state.people.map(People => {
         if (People.id === updatedPeople.id) {
           return Object.assign({}, updatedPeople)
         } else {
@@ -61,7 +61,7 @@ class PeopleDashboard extends Component {
     })
   }
 
-  handleOpenEvent = (peopleToOpen) => () => {
+  handleOpenPeople = (peopleToOpen) => () => {
     this.setState({
       selectedPeople: peopleToOpen,
       isOpen: true
@@ -69,10 +69,11 @@ class PeopleDashboard extends Component {
   } 
 
 
-  handleCreatePeople = (newPeople) =>{
+  handleCreatePeople = (newPeople) => {
     newPeople.id = cuid();
+    
     //newPeople.PhotoURL = '../../../public/assets/logo.png';
-    const updatedPeople = [ ...this.state.People, newPeople];
+    const updatedPeople = [ ...this.state.people, newPeople];
     this.setState({
       people: updatedPeople,
       isOpen: false
@@ -80,9 +81,9 @@ class PeopleDashboard extends Component {
   }
 
   handleDeletePeople = (peopleId) => () => {
-    const updatedPeople = this.state.People.filter(p => p.id !== peopleId);
+    const updatedPeople = this.state.people.filter(p => p.id !== peopleId);
     this.setState({
-      People: updatedPeople
+      people: updatedPeople
     })
   }
 
@@ -92,11 +93,11 @@ class PeopleDashboard extends Component {
     return (
       <Grid>
         <Grid.Column width={10}>
-          <PeopleList deletePeople={this.handleDeletePeople} People={this.state.People} onPeopleOpen={this.handleOpenPeople }/>
+          <PeopleList deletePeople={this.handleDeletePeople} People={this.state.people} onPeopleOpen={this.handleOpenPeople }/>
         </Grid.Column>
         <Grid.Column width={6}>
-          <Button positive content='Sign Up' onClick={this.handleFormOpen} />
-          {this.state.isOpen && <PeopleForm updatePeople={this.handleUpdatePeople} selectedPeople={selectedPeople} handleCancel={this.handleCancel} createPoeple={this.handleCreatePeople}/>}
+          <Button positive content='Sign Up' onClick={this.handleFormOpen} /> 
+          {this.state.isOpen && <PeopleForm createPeople={this.handleCreatePeople} selectedPeople={selectedPeople} handleCancel={this.handleCancel} updatePoeple={this.handleUpdatePeople}/>}
         </Grid.Column>
 
       </Grid>

@@ -7,7 +7,7 @@ class PeopleList extends Component {
     return (
       <div>
         <h1>People List</h1>
-        {People.map(people => (
+        {People.map((people) => (
           <PeopleListItem
             key={people.id}
             people={people}

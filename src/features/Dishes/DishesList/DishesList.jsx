@@ -3,12 +3,13 @@ import DishesListItem from '../DishesList/DishesListItem';
 
 class DishesList extends Component {
   render() {
-    const {dishes} = this.props;      
+    const {dishes,onDishOpen, deleteDish} = this.props;      
     return (
       <div>
         
-        { dishes.map((dishes) => (
-          <DishesListItem dishes={dishes}/>
+        {dishes && dishes.map((dishes) => (
+          <DishesListItem dishes={dishes}key={dishes.id} onDishOpen={onDishOpen}
+          deleteDish={deleteDish}/>
         ))}
 
 
