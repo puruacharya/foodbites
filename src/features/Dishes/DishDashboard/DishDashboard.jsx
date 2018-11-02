@@ -37,7 +37,8 @@ class DishDashboard extends Component {
     }
     else {
       this.setState({
-        isOpen : false,selectedDish:null
+        isOpen : false,
+        selectedDish : null
       })
 
     }

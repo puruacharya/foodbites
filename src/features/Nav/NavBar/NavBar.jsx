@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Menu, Container, Button } from 'semantic-ui-react';
-import { withRouter , NavLink} from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import SignedOutMenu from '../Menus/SignedOutMenu';
 import SignedInMenu from '../Menus/SignedInMenu';
 
 class NavBar extends Component {
-  state  = {
+  state = {
     authenticated: false
   };
   handleSignIn = () => {
@@ -29,11 +29,11 @@ class NavBar extends Component {
             <img src="assets/logo.png" alt="logo" />
             Foodbites
                       </Menu.Item>
-          <Menu.Item name="Dishes" as={NavLink} to='/dishdashboard'/>
-         
-          <Menu.Item as={NavLink} to='/testpage'name="TestPage"/>
-          <Menu.Item as={NavLink} to='/people'name="User List"/>   
-            <Menu.Item>
+          <Menu.Item name="Dishes" as={NavLink} to='/dishdashboard' />
+
+          <Menu.Item as={NavLink} to='/testpage' name="TestPage" />
+          <Menu.Item as={NavLink} to='/people' name="User List" />
+          <Menu.Item>
 
             {authenticated &&
               <Button floated="right" positive inverted content="View My Cart/Wishlist" />}
