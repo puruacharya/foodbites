@@ -29,10 +29,10 @@ class NavBar extends Component {
             <img src="assets/logo.png" alt="logo" />
             Foodbites
                       </Menu.Item>
-          <Menu.Item name="Dishes" />
+          <Menu.Item name="Dishes" as={NavLink} to='/dishdashboard'/>
          
-          <Menu.Item as={NavLink} to='/testpage'>TestPage</Menu.Item>
-          <Menu.Item as={NavLink} to='/people'>User List</Menu.Item>  
+          <Menu.Item as={NavLink} to='/testpage'name="TestPage"/>
+          <Menu.Item as={NavLink} to='/people'name="User List"/> 
             <Menu.Item>
 
             {authenticated &&

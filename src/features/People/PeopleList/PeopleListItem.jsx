@@ -19,9 +19,10 @@ class PeopleListItem extends Component {
 
         <Segment clearing>
           <span>{people.dob}</span>
-        </Segment>
+
         <Button onClick={deletePeople(people.id)} as="a" color="red" floated="right" content="Delete" />
         <Button onClick={onPeopleOpen(people)} as="a" color="teal" floated="right" content="View" />
+        </Segment>
       </Segment.Group>
 
     );

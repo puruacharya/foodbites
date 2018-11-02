@@ -3,11 +3,11 @@ import PeopleListItem from './PeopleListItem';
 
 class PeopleList extends Component {
   render() {
-    const {People, onPeopleOpen, deletePeople} = this.props;      
+    const {people, onPeopleOpen, deletePeople} = this.props;      
     return (
       <div>
         <h1>People List</h1>
-        {People.map((people) => (
+        { people.map((people) => (
           <PeopleListItem
             key={people.id}
             people={people}

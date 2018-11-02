@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Segment, Item, Button } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 class DishesListItem extends Component {
   render() {
-    const {dishes,onDishOpen, deleteDish } = this.props;
+    const {dishes, deleteDish } = this.props;
     return (
       <Segment.Group>
         <Segment>
@@ -22,7 +23,7 @@ class DishesListItem extends Component {
         <Segment clearing>
         <span>{dishes.description}</span>
         <Button onClick={deleteDish(dishes.id)} as="a" color="red" floated="right" content="Delete" />
-        <Button onClick={onDishOpen(dishes)} as="a" color="teal" floated="right" content="View" />
+        <Button as={Link} to={`/dish/${dishes.title}`}color="teal" floated="right" content="View" />
           </Segment>
       </Segment.Group>
     );

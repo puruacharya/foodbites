@@ -7,7 +7,9 @@ import SettingDashboard from '../../features/user/Settings/SettingDashboard';
 import {Container} from 'semantic-ui-react';
 import {Route , Switch} from 'react-router-dom';
 import TestComponent from '../../features/testarea/TestComponent';
-import PeopleDashboard from '../../features/People/PeopleDashBoard/PeopleDashBoard'
+import PeopleDashboard from '../../features/People/PeopleDashBoard/PeopleDashBoard';
+import DishDetailPage from '../../features/Dishes/DishDetail/DishDetailPage';
+
 
 class App extends Component {
   render() {
@@ -30,6 +32,7 @@ class App extends Component {
                 <Route path='/settings' component={SettingDashboard}/>
                 <Route path='/testpage' component={TestComponent}/>
                 <Route path='/people' component = {PeopleDashboard} />
+                <Route path='/dish/:id' component = {DishDetailPage} />
 
               </Switch>
             </Container>

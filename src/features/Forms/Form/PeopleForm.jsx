@@ -14,13 +14,9 @@ class PeopleForm extends Component {
   state = {
     people: emptyForm
   };
-  componentDidMount() {
-    if (this.props.selectedPeople !== null) {
-      this.setState({
-        people: this.props.selectedPeople
-      })
-    }
-  }
+
+  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedPeople !== this.props.selectedPeople) {
       this.setState({
@@ -28,6 +24,15 @@ class PeopleForm extends Component {
       })
     }
   }
+  componentDidMount() {
+    if (this.props.selectedPeople !== null) {
+      this.setState({
+        people: this.props.selectedPeople
+      })
+    }
+  }
+
+  
   onFormSubmit = (ppl) => {
     ppl.preventDefault();
     if (this.state.people.id) {
@@ -72,7 +77,7 @@ class PeopleForm extends Component {
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input name="pass" placeholder="Enter the Password" onChange={this.onInputChange} value={people.pass} />
+            <input name="pass"placeholder="Enter the Password" onChange={this.onInputChange} value={people.pass} />
           </Form.Field>
           <Button positive type="submit" >
             Submit

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
 
 const emptyForm = {
-  id: '1',
+  id: '',
   title: '',
 
   category: '',
@@ -17,13 +17,6 @@ class DishForm extends Component {
   state = {
     dishes: emptyForm
   };
-  componentDidMount() {
-    if (this.props.selectedDish !== null) {
-      this.setState({
-        dishes: this.props.selectedDish
-      })
-    }
-  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedDish !== this.props.selectedDish) {
       this.setState({
@@ -31,6 +24,15 @@ class DishForm extends Component {
       })
     }
   }
+  componentDidMount() {
+    if (this.props.selectedDish !== null) {
+      this.setState({
+        dishes: this.props.selectedDish
+      })
+    }
+  }
+
+  
   onFormSubmit = (dsh) => {
     dsh.preventDefault();
     if (this.state.dishes.id) {
@@ -41,7 +43,7 @@ class DishForm extends Component {
     }
   }
   onInputChange = (dsh) => {
-    const newDish = this.props.dishes;
+    const newDish = this.state.dishes;
     newDish[dsh.target.name] = dsh.target.value;
     this.setState({
       dishes: newDish
@@ -49,7 +51,7 @@ class DishForm extends Component {
   }
   render() {
     const { handleCancel } = this.props;
-    const { dishes } = this.props;
+    const { dishes } = this.state;
     return (
       <Segment>
         <Form onSubmit={this.onFormSubmit}>

@@ -2,37 +2,31 @@ import React, { Component } from 'react';
 import { Grid, Button } from 'semantic-ui-react';
 import PeopleList from '../PeopleList/PeopleList';
 import PeopleForm from '../../Forms/Form/PeopleForm';
+import { createPeople, deletePeople, updatePeople } from '../peopleAction';
 import cuid from 'cuid';
+import { connect } from "react-redux";
 
 
-const People = [
-  {
-    id: '1',
-    fname: 'Raj',
-    lname: 'Singh',
-    Nationality: 'Indian',
-    dob: '05/20/1996',
-    city: 'Indore', 
-    address: 'I/147 l.i.g. colony',
-    uname: 'puru',
-    pass: '12345'
+const mapState = (state) => ({
+  people: state.people
+});
+const actions = {
+  createPeople,
+  updatePeople,
+  deletePeople
+};
 
-  }
-
-];
 
 class PeopleDashboard extends Component {
 
 
 
   state = {
-    people: People,
+   
     isOpen: false,
     selectedPeople : null
-    //selectedDish: 
+     
   };
-  //this.handleFormOpen = this.handleFormOpen.bind(this);
-  //this.handleCancel = this.handleCancel.bind(this);
 
   handleFormOpen = () => {
     this.setState({
@@ -43,7 +37,8 @@ class PeopleDashboard extends Component {
 
   handleCancel = () => {
     this.setState({
-      isOpen: false
+      isOpen: false,
+      selectedPeople : null
     });
   };
 
@@ -73,36 +68,34 @@ class PeopleDashboard extends Component {
     newPeople.id = cuid();
     
     //newPeople.PhotoURL = '../../../public/assets/logo.png';
-    const updatedPeople = [ ...this.state.people, newPeople];
+   this.props.createPeople(newPeople);
     this.setState({
-      people: updatedPeople,
+   //   people: updatedPeople,
       isOpen: false
     })
   }
 
-  handleDeletePeople = (peopleId) => () => {
-    const updatedPeople = this.state.people.filter(p => p.id !== peopleId);
-    this.setState({
-      people: updatedPeople
-    })
-  }
+  handleDeletePeople = (PeopleId) => () => {
+    this.props.deletePeople(PeopleId);
+  };
 
 
   render() {
     const {selectedPeople} = this.state;
+    const {people} = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <PeopleList deletePeople={this.handleDeletePeople} People={this.state.people} onPeopleOpen={this.handleOpenPeople }/>
+          <PeopleList deletePeople={this.handleDeletePeople} people={people} onPeopleOpen={this.handleOpenPeople }/>
         </Grid.Column>
         <Grid.Column width={6}>
           <Button positive content='Sign Up' onClick={this.handleFormOpen} /> 
           {this.state.isOpen && <PeopleForm createPeople={this.handleCreatePeople} selectedPeople={selectedPeople} handleCancel={this.handleCancel} updatePoeple={this.handleUpdatePeople}/>}
-        </Grid.Column>
+        </Grid.Column>         
 
       </Grid>
     );
   }
 }
 
-export default PeopleDashboard;
+export default connect(mapState,actions)(PeopleDashboard);
