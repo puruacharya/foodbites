@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import PeopleListItem from './PeopleListItem';
+import  PeopleListItem  from '../PeopleList/PeopleListItem';
 
 class PeopleList extends Component {
   render() {
-    const {people, onPeopleOpen, deletePeople} = this.props;      
+    const {peoples,onPeopleOpen, deletePeople} = this.props;      
     return (
       <div>
-        <h1>People List</h1>
-        { people.map((people) => (
-          <PeopleListItem
-            key={people.id}
-            people={people}
-            onPeopleOpen={onPeopleOpen}
-            deletePeople={deletePeople}
-          />
+        
+        {peoples && peoples.map((peoples) => (
+          <PeopleListItem peoples={peoples}key={peoples.id} onPeopleOpen={onPeopleOpen}
+          deletePeople={deletePeople}/>
         ))}
+
+
       </div>
     );
   }

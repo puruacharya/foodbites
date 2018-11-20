@@ -11,10 +11,10 @@ const initialState = [
       category: 'Indian',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-      city: 'London, UK',
-      venue: "Tower of London, St Katharine's & Wapping, London",
-      hostedBy: 'Bob',
-      hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+      price: '200',
+      course: "Tower of London, St Katharine's & Wapping, London",
+      quantity: '5',
+      photoURL: 'https://randomuser.me/api/portraits/men/4.jpg',
   
     },
     {
@@ -23,10 +23,10 @@ const initialState = [
       category: 'Chineese',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-      city: 'London, UK',
-      venue: 'Punch & Judy, Henrietta Street, London, UK',
-      hostedBy: 'Tom',
-      hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
+      price: 'London, UK',
+      course: 'Punch & Judy, Henrietta Street, London, UK',
+      quantity: '600',
+      photoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
       
     }
   ];
@@ -48,8 +48,11 @@ export const deleteDish = (state, payload) => {
     return [...state.filter(dish => dish.id !== payload.dishId)];
 } ;
 
+
+
 export default createReducer(initialState, {
     [CREATE_DISH]: createDish,
     [UPDATE_DISH]: updateDish,
-    [DELETE_DISH]: deleteDish
+    [DELETE_DISH]: deleteDish,
+
 });

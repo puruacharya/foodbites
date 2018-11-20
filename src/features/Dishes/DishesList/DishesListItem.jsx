@@ -9,11 +9,11 @@ class DishesListItem extends Component {
         <Segment>
           <Item.Group>
             <Item>
-              <Item.Image size="tiny" circular src={dishes.hostPhotoURL} />
+              <Item.Image size="small" circular src={dishes.photoURL} />
               <Item.Content>
                 <Item.Header as="a">{dishes.title}</Item.Header>
                 <Item.Description>
-                  Hosted by <a>{dishes.hostedBy}</a>
+                  Quantity <a>{dishes.quantity}</a>
                 </Item.Description>
               </Item.Content>
             </Item>
@@ -23,7 +23,7 @@ class DishesListItem extends Component {
         <Segment clearing>
         <span>{dishes.description}</span>
         <Button onClick={deleteDish(dishes.id)} as="a" color="red" floated="right" content="Delete" />
-        <Button as={Link} to={`/dish/${dishes.title}`}color="teal" floated="right" content="View" />
+        <Button as={Link} to={`/dish/${dishes.id}`}color="teal" floated="right" content="View" />
           </Segment>
       </Segment.Group>
     );

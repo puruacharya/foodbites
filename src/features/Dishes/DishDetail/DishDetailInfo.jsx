@@ -1,6 +1,6 @@
 import React from 'react';
 import { Segment,Grid, Icon, Button } from 'semantic-ui-react'
-export const DishDetailInfo = () => {
+export const DishDetailInfo = ({dish}) => {
   return (
        <Segment.Group>
           <Segment attached="top">
@@ -9,17 +9,17 @@ export const DishDetailInfo = () => {
                 <Icon size="large" color="teal" name="info" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <p>Description of Event</p>
+                <p>{dish.description}</p>
               </Grid.Column>
             </Grid>
           </Segment>
           <Segment attached>
             <Grid verticalAlign="middle">
               <Grid.Column width={1}>
-                <Icon name="calendar" size="large" color="teal" />
+                <Icon name="money" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <span>Event Date</span>
+                <span>{dish.price}</span>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -29,7 +29,7 @@ export const DishDetailInfo = () => {
                 <Icon name="marker" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={11}>
-                <span>Event Venue</span>
+                <span>{dish.photoURL}</span>
               </Grid.Column>
               <Grid.Column width={4}>
                 <Button color="teal" size="tiny" content="Show Map" />

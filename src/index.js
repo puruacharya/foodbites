@@ -7,16 +7,21 @@ import App from './app/layout/App';
 import registerServiceWorker from './registerServiceWorker';
 import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter } from 'react-router-dom';
+import ScrollToTop from './app/common/util/ScrollToTop';
 
 const rootEl = document.getElementById('root');
 
 const store = ConfigureStore();
+
 let render = () => {
 
     ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>
-                <App />
+                <ScrollToTop>
+                    <App />
+                </ScrollToTop>
+
             </BrowserRouter>
         </Provider>,
         rootEl
