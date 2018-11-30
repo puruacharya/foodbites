@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase'
 import { deletePeople } from '../peopleAction';
-//import DishForm from '../DishForm/DishForm';
-import PeopleList  from '../PeopleList/PeopleList';
+import PeopleList from '../../People/PeopleList/PeopleList';
 
 const mapState = state => ({
-  peoples: state.people
+  peoples: state.firestore.ordered.peoples
 });
 
 const actions = {
@@ -14,7 +14,7 @@ const actions = {
 };
 
 class PeopleDashboard extends Component {
-  handleDeletePeople = peopleId => () => {
+  handleDeletePeople = (peopleId) => () => {
     this.props.deletePeople(peopleId);
   };
 
@@ -23,7 +23,7 @@ class PeopleDashboard extends Component {
     return (
       <Grid>
         <Grid.Column width={10}>
-          <PeopleList deletePeople={this.handleDeletePeople} peoples={peoples} />
+          <PeopleList deletePeople={this.handleDeletePeople} people={peoples} />
         </Grid.Column>
         <Grid.Column width={6}>
           
@@ -33,4 +33,5 @@ class PeopleDashboard extends Component {
   }
 }
 
-export default connect(mapState, actions)(PeopleDashboard);
+export default connect(mapState, actions)
+(firestoreConnect([{ collection:'peoples' }])(PeopleDashboard));

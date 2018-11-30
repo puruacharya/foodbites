@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import  ChefListItem  from '../ChefList/ChefListItem';
+import ChefListItem from '../ChefList/ChefListItem';
 
 class ChefList extends Component {
   render() {
-    const {chefs,onChefOpen, deleteChef} = this.props;      
+    const {chef,onChefOpen, deleteChef} = this.props;      
     return (
       <div>
         
-        {chefs && chefs.map((chefs) => (
-          <ChefListItem chefs={chefs}key={chefs.id} onChefOpen={onChefOpen}
+        {chef && chef.map((chef) => (
+          <ChefListItem chef={chef} key={chef.id} onChefOpen={onChefOpen}
           deleteChef={deleteChef}/>
         ))}
 

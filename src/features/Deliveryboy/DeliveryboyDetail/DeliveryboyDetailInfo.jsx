@@ -9,7 +9,7 @@ export const DeliveryboyDetailInfo = ({dboy}) => {
                 <Icon size="large" color="teal" name="info" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <p>{dboy.address}</p>
+                <p>{dboy.description}</p>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -19,7 +19,7 @@ export const DeliveryboyDetailInfo = ({dboy}) => {
                 <Icon name="money" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <span>{dboy}</span>
+                <span>{dboy.price}</span>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -29,7 +29,7 @@ export const DeliveryboyDetailInfo = ({dboy}) => {
                 <Icon name="marker" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={11}>
-                <span>{dboy.dob}</span>
+                <span>{dboy.photoURL}</span>
               </Grid.Column>
               <Grid.Column width={4}>
                 <Button color="teal" size="tiny" content="Show Map" />
@@ -40,4 +40,4 @@ export const DeliveryboyDetailInfo = ({dboy}) => {
   );
 };
 
-//export default PeopleDetailInfo;
+//export default DishDetailInfo;

@@ -18,7 +18,7 @@ const mapState = (state,ownProps) => {
     }
 
     return {chef};
-};
+}
 
 const ChefDetailPage = ({chef})  => {
 
@@ -30,10 +30,10 @@ const ChefDetailPage = ({chef})  => {
                 <ChefDetailChat />
             </Grid.Column>
             <Grid.Column width={6}>
-                <ChefDetailSidebar description={chef.address} />
+                <ChefDetailSidebar description={chef.description} />
             </Grid.Column>
         </Grid>
-    );
+    )
 };
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, List , Item, Label} from 'semantic-ui-react';
+import { Segment, List , Item, Label} from 'semantic-ui-react'
 export const ChefDetailSidebar = () => {
   return (
        <div>
@@ -36,4 +36,4 @@ export const ChefDetailSidebar = () => {
   );
 };
 
-//export default DishDetailSidebar;
+//export default ChefDetailSidebar;

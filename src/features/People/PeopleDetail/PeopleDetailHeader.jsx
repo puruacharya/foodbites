@@ -1,8 +1,9 @@
 import React from 'react';
-import { Segment, Item, Header, Button } from 'semantic-ui-react';
-// const chefImageStyle = {
-//     filter: 'brightness(30%)'
-// };
+import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+const peopleImageStyle = {
+    filter: 'brightness(30%)'
+};
 
 const peopleImageTextStyle = {
     position: 'absolute',
@@ -16,32 +17,30 @@ const PeopleDetailHeader = ({people}) => {
     return (
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
-                
+                <Image src={people.photoURL} circular size='medium'  style={peopleImageStyle}/>
+        
                 <Segment basic style={peopleImageTextStyle}>
                   <Item.Group>
                     <Item>
                       <Item.Content>
                         <Header
                           size="huge"
-                          content=""
-
-                          style={{ color: 'black' }}
+                          
+                         
                         />
-                        <p>{people.dob}</p>
-                        <p style={{color:'black'}}>
-                          City <strong>{people.city}</strong>
-                        </p>
-                      </Item.Content>
+                        <h1 style={{ color: 'black' }}>{people.fname} {people.lname}</h1>
+                        
+                        </Item.Content>
                     </Item>
                   </Item.Group>
                 </Segment>
               </Segment>
         
               <Segment attached="bottom">
-                <Button>Give a like</Button>
+                <Button>Message</Button>
                 
         
-                <Button color="orange" floated="right">
+                <Button as={Link} to={`/createpeople/${people.id}`}color="orange" floated="right">
                   Manage People
                 </Button>
               </Segment>

@@ -5,30 +5,36 @@ import { CREATE_DISH, UPDATE_DISH, DELETE_DISH } from './dishConstant';
 
 const initialState = [
     {
-      id: '1',
-      title: 'Paav Bhaaji',
-      
-      category: 'Indian',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-      price: '200',
-      course: "Tower of London, St Katharine's & Wapping, London",
-      quantity: '5',
-      photoURL: 'https://randomuser.me/api/portraits/men/4.jpg',
-  
-    },
-    {
-      id: '2',
-      title: 'noodles',    
-      category: 'Chineese',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-      price: 'London, UK',
-      course: 'Punch & Judy, Henrietta Street, London, UK',
-      quantity: '600',
-      photoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
-      
-    }
+        id: '1',
+        title: 'Paav Bhaaji',
+        quant: '5',
+        cost: '400',
+        seasonal: 'Winter',
+        
+          
+          
+        category: 'Indian',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+        nooflikes : '15',
+        photoURL: 'https://randomuser.me/api/portraits/men/4.jpg',
+    
+      },
+      {
+        id: '2',
+        title: 'Noodles',
+        quant: '10',
+        cost: '400',
+        seasonal: 'all',
+          
+          
+        category: 'Chineese',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+        nooflikes : '13',
+        photoURL: 'https://randomuser.me/api/portraits/men/4.jpg',
+    
+      },
   ];
   
 export const createDish = (state, payload) => {

@@ -1,6 +1,6 @@
 import { DeliveryboyDetailChat } from "./DeliveryboyDetailChat";
 import DeliveryboyDetailHeader from "./DeliveryboyDetailHeader";
-import { DeliveryboyDetailSidebar } from "./DeliveryboyDetailSidebar";
+import {DeliveryboyDetailSidebar}  from "./DeliveryboyDetailSidebar";
 import { DeliveryboyDetailInfo } from "./DeliveryboyDetailInfo";
 import { Grid } from "semantic-ui-react";
 import React from 'react';
@@ -18,9 +18,9 @@ const mapState = (state,ownProps) => {
     }
 
     return {dboy};
-};
+}
 
-const DeliveryboyDetailPage = ({dboy})  => {
+const DeliverboyDetailPage = ({dboy})  => {
 
     return (
         <Grid>
@@ -30,11 +30,11 @@ const DeliveryboyDetailPage = ({dboy})  => {
                 <DeliveryboyDetailChat />
             </Grid.Column>
             <Grid.Column width={6}>
-                <DeliveryboyDetailSidebar address={dboy.address} />
+                <DeliveryboyDetailSidebar description={dboy.description} />
             </Grid.Column>
         </Grid>
-    );
+    )
 };
 
 
-export default connect(mapState)(DeliveryboyDetailPage);
+export default connect(mapState)(DeliverboyDetailPage);

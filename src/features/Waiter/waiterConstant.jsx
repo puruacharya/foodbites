@@ -1,0 +1,4 @@
+export const CREATE_WAITER = "CREATE_WAITER";
+export const DELETE_WAITER = "DELETE_WAITER";
+export const UPDATE_WAITER = "UPDATE_WAITER";
+

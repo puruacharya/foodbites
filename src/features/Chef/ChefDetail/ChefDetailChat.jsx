@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment,Button, Form, Comment, Header } from 'semantic-ui-react';
+import { Segment,Button, Form, Comment, Header } from 'semantic-ui-react'
 
 export const ChefDetailChat = () => {
   return (
@@ -11,7 +11,7 @@ export const ChefDetailChat = () => {
         color="teal"
         style={{ border: 'none' }}
       >
-        <Header>Chat about this chef</Header>
+        <Header>Chat about this event</Header>
       </Segment>
 
       <Segment attached>

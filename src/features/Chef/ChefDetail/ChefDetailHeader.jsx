@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import { Segment, Item, Header, Button }   from 'semantic-ui-react';
-// const chefImageStyle = {
-//     filter: 'brightness(30%)'
-// };
+import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+const chefImageStyle = {
+    filter: 'brightness(30%)'
+};
 
 const chefImageTextStyle = {
     position: 'absolute',
@@ -17,20 +17,20 @@ const ChefDetailHeader = ({chef}) => {
     return (
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
-                
+                <Image src='{chef.hostPhotoURL}' alt="pic" fluid style={chefImageStyle}/>
+        
                 <Segment basic style={chefImageTextStyle}>
                   <Item.Group>
                     <Item>
                       <Item.Content>
                         <Header
                           size="huge"
-                          content=""
-
+                          content={chef.title}
                           style={{ color: 'black' }}
                         />
-                        <p>{chef.dob}</p>
+                        <p>{chef.category}</p>
                         <p style={{color:'black'}}>
-                          City <strong>{chef.city}</strong>
+                          Quantity <strong>{chef.quantity}</strong>
                         </p>
                       </Item.Content>
                     </Item>
@@ -39,11 +39,11 @@ const ChefDetailHeader = ({chef}) => {
               </Segment>
         
               <Segment attached="bottom">
-                <Button>Give a like</Button>
-                
+                <Button>Add to Cart</Button>
+                <Button color="teal">Add to Wishlist</Button>
         
-                <Button color="orange" floated="right" as={Link} to={`/createchef/${chef.id}`}>
-                  Manage Chef
+                <Button as={Link} to={`/createchef/${chef.id}`}color="orange" floated="right">
+                  Manage Dish
                 </Button>
               </Segment>
             </Segment.Group>

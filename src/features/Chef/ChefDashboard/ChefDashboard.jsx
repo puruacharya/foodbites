@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { deleteChef } from '../chefAction';
-import ChefList  from '../ChefList/ChefList';
+import ChefList from '../ChefList/ChefList';
 
 const mapState = state => ({
-  chefs: state.chef
+  chef: state.chef
 });
 
 const actions = {
@@ -18,11 +18,11 @@ class ChefDashboard extends Component {
   };
 
   render() {
-    const { chefs } = this.props;
+    const { chef } = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <ChefList deleteChef={this.handleDeleteChef} chefs={chefs} />
+          <ChefList deleteChef={this.handleDeleteChef} chef={chef} />
         </Grid.Column>
         <Grid.Column width={6}>
           

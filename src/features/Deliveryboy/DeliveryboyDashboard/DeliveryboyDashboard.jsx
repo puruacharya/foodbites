@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { deleteDeliveryboy } from '../deliveryboyAction';
-import DeliveryboyList  from '../DeliveryboyList/DeliveryboyList';
+import { deleteDboy } from '../dboyAction';
+import DeliveryboyList from '../DeliveryboyList/DeliveryboyList';
 
 const mapState = state => ({
-  dboys: state.dboy
+  dboy: state.dboy
 });
 
 const actions = {
-  deleteDeliveryboy
+  deleteDboy
 };
 
 class DeliveryboyDashboard extends Component {
-  handleDeleteDeliveryboy = dboyId => () => {
-    this.props.deleteDeliveryboy(dboyId);
+  handleDeleteDboy = (dboyId) => () => {
+    this.props.deleteDboy(dboyId);
   };
 
   render() {
-    const { dboys} = this.props;
+    const { dboy } = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <DeliveryboyList deleteDeliveryboy={this.handleDeleteDeliveryboy} dboys={dboys} />
+          <DeliveryboyList deleteDboy={this.handleDeleteDboy} dboy={dboy} />
         </Grid.Column>
         <Grid.Column width={6}>
           

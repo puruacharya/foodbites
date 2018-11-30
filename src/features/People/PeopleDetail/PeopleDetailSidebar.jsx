@@ -36,4 +36,3 @@ export const PeopleDetailSidebar = () => {
   );
 };
 
-//export default DishDetailSidebar;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment,Grid, Icon, Button } from 'semantic-ui-react';
+import { Segment,Grid, Icon, Button } from 'semantic-ui-react'
 export const ChefDetailInfo = ({chef}) => {
   return (
        <Segment.Group>
@@ -9,7 +9,7 @@ export const ChefDetailInfo = ({chef}) => {
                 <Icon size="large" color="teal" name="info" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <p>{chef.city}</p>
+                <p>{chef.description}</p>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -19,7 +19,7 @@ export const ChefDetailInfo = ({chef}) => {
                 <Icon name="money" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <span>{chef.dob}</span>
+                <span>{chef.price}</span>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -29,7 +29,7 @@ export const ChefDetailInfo = ({chef}) => {
                 <Icon name="marker" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={11}>
-                <span>{chef.uname}</span>
+                <span>{chef.photoURL}</span>
               </Grid.Column>
               <Grid.Column width={4}>
                 <Button color="teal" size="tiny" content="Show Map" />
@@ -40,4 +40,4 @@ export const ChefDetailInfo = ({chef}) => {
   );
 };
 
-//export default DishDetailInfo;
+//export default ChefDetailInfo;

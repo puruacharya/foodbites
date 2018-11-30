@@ -1,83 +1,17 @@
-// import React, { Component } from 'react';
-// import { Segment, Form, Button } from 'semantic-ui-react';
-// import { reduxForm, Field } from 'redux-form';
-// import TextInput from '../../../app/common/Form/TextInput'
-// import SelectInput from '../../../app/common/Form/SelectInput';
-// //import DateInput from '../../../app/common/Form/DateInput';
-// import TextArea from '../../../app/common/Form/TextArea';
-// import { createDish, deleteDish, updateDish } from '../dishAction';
-// import { connect } from 'react-redux';
-
-// const mapState = (state, ownProps) => {
-//   const dishId = ownProps.match.params.id;
-//   let dishes = {};
-//   if (dishId && state.dishes.length > 0) {
-//     dishes = state.dishes.filter(dish => dish.id === dishId)[0];
-//   }
-//   return {
-//     initialValues: dishes
-//   };
-// };
-// const actions = {
-//   createDish,
-//   updateDish,
-//   deleteDish
-// }
-// class DishForm extends Component {
-
-
-//   onFormSubmit = (value) => {
-//     value.preventDefault();
-//     if (this.state.dishes.id) {
-//       this.props.updateDish(this.state.dishes);
-
-//     } else {
-//       this.props.createDish(this.state.dishes);
-//     }
-//   }
-
-
-//   render() {
-
-//     return (
-//       <Segment>
-//         <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
-//           <Field name='title' type='text' component={TextInput} placeholder='Title' value={dishes.title} />
-//           <Field name='category' type='text' component={SelectInput} placeholder='Category' value={dishes.category} />
-//           <Field name='description' type='text' component={TextArea} placeholder='Description' value={dishes.description} />
-//           <Field name='price' type='text' component={TextInput} placeholder='Price' value={dishes.price} />
-//           <Field name='course' type='text' component={SelectInput} placeholder='Course' value={dishes.course} />
-//           <Field name='quantity' type='text' component={TextInput} placeholder='Quantity' value={dishes.quantity} />
-//           <Field name='photoURL' type='text' component={TextInput} placeholder='Photo URL' value={dishes.photoURL} />
-//           <Button positive type="submit" >
-//             Submit
-//                 </Button>
-//           <Button onClick={handleCancel} type="button" >Cancel</Button>
-//         </Form>
-//       </Segment>
-
-//     );
-//   }
-// }
-
-// export default connect(mapState,actions) (reduxForm({ form: 'dishForm', enableReinitialize: 'true' }))(DishForm);
-
-
-
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import moment from 'moment';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import cuid from 'cuid';
-import { Segment, Form, Button, Grid, Header } from 'semantic-ui-react';
+import { Segment, Form, Button, Grid, Header, Divider } from 'semantic-ui-react';
 import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from 'revalidate'
 import { createDish, updateDish } from '../dishAction';
 import TextInput from '../../../app/common/Form/TextInput';
 import TextArea from '../../../app/common/Form/TextArea';
 import SelectInput from '../../../app/common/Form/SelectInput';
-//import DateInput from '../../../app/common/form/DateInput';
 
+  import PlaceInput from '../../../app/common/Form/PlaceInput';
 const mapState = (state, ownProps) => {
   const dishId = ownProps.match.params.id;
 
@@ -104,6 +38,14 @@ const category = [
     {key: 'Mexican', text: 'Mexican', value: 'Mexican'},
     {key: 'Continental', text: 'Continental', value: 'Continental'}
 ];
+  const seasonal = [
+    {key: 'Winter', text: 'Winter', value: 'Winter'},
+    {key: 'Summer', text: 'Summer', value: 'Summer'},
+    {key: 'Spring', text: 'Spring', value: 'Spring'},
+    {key: 'Autumn', text: 'Autumn', value: 'Autumn'},
+    {key: 'All', text: 'All', value: 'All'}
+    
+];
 
 const validate = combineValidators({
   title: isRequired({message: 'The event title is required'}),
@@ -112,9 +54,9 @@ const validate = combineValidators({
     isRequired({message: 'Please enter a description'}),
     hasLengthGreaterThan(4)({message: 'Description needs to be at least 5 characters'})
   )(),
-  price: isRequired('city'),
-  quantity: isRequired('venue'),
-  photoURL: isRequired('date')
+    cost: isRequired({message: 'Cost cannot be empty'}),
+    seasoned: isRequired({message: 'Please provide a category'}),
+    photoURL: isRequired('Please give amazing pic of dish')
 })
 
 class DishForm extends Component {
@@ -125,13 +67,13 @@ class DishForm extends Component {
       this.props.updateDish(values);
       this.props.history.goBack();
     } else {
-      const newEvent = {
+        const newDish = {
         ...values,
         id: cuid(),
         photoURL: '/assets/user.png',
         
       };
-      this.props.createDish(newEvent);
+        this.props.createDish(newDish);
       this.props.history.push('/dishdashboard');
     }
   };
@@ -148,7 +90,7 @@ class DishForm extends Component {
                 name="title"
                 type="text"
                 component={TextInput}
-                placeholder="Give your dish a name"
+                  placeholder="Give your Dish a title"
               />
               <Field
                 name="category"
@@ -166,16 +108,23 @@ class DishForm extends Component {
               />
               <Header sub color='teal' content='Dish details'floated='right' size='large'/>
               <Field
-                name="price"
+                  name="cost"
                 type="text"
                 component={TextInput}
                 placeholder="Price"
               />
               <Field
-                name="quantity"
+                  name="quant"
+                  type="text"
+                  component={TextInput}
+                  placeholder="Quantity"
+                />
+                <Field
+                  name="seasonal"
                 type="text"
-                component={TextInput}
-                placeholder="Quantity"
+                component={SelectInput}
+                options={seasonal}
+                placeholder="Season in which it is available"
               />
               <Field
                 name="photoURL"
@@ -201,5 +150,5 @@ class DishForm extends Component {
 }
 
 export default connect(mapState, actions)(
-  reduxForm({ form: 'eventForm', enableReinitialize: true, validate })(DishForm)
+    reduxForm({ form: 'dishForm', enableReinitialize: true, validate })(DishForm)
 );

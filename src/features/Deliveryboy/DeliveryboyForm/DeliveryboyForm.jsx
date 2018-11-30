@@ -1,38 +1,35 @@
-/* global google */
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form'//import {PlaceInput} from '../../../app/common/form/PlaceInput';;
+import { reduxForm, Field } from 'redux-form';
 import moment from 'moment';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import cuid from 'cuid';
-import { Segment, Form, Button, Grid, Header, Divider } from 'semantic-ui-react';
+import { Segment, Form, Button, Grid, Header } from 'semantic-ui-react';
 import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from 'revalidate'
-import { createDish } from '../dishAction';
+import { createDboy, updateDboy } from '../dboyAction';
 import TextInput from '../../../app/common/Form/TextInput';
 import TextArea from '../../../app/common/Form/TextArea';
 import SelectInput from '../../../app/common/Form/SelectInput';
 
-import PlaceInput from '../../../app/common/Form/PlaceInput';
+
 const mapState = (state, ownProps) => {
-  const dishId = ownProps.match.params.id;
+  const dboyId = ownProps.match.params.id;
 
-  let dish = {};
+  let dboy = {};
 
-  if (dishId && state.dish.length > 0) {
-    dish = state.dish.filter(dish => dish.id === dishId)[0];
+  if (dboyId && state.dboy.length > 0) {
+    dboy = state.dboy.filter(dboy => dboy.id === dboyId)[0];
   }
 
   return {
-    initialValues: dish
+    initialValues: dboy
   };
 };
 
 const actions = {
-  createDish,
-  
+  createDboy,
+  updateDboy
 };
-//import {PlaceInput} from '../../../app/common/form/PlaceInput';
+
 const category = [
     {key: 'Indian', text: 'Indian', value: 'Indian'},
     {key: 'Chineese', text: 'Chineese', value: 'Chineese'},
@@ -47,39 +44,29 @@ const validate = combineValidators({
   description: composeValidators(
     isRequired({message: 'Please enter a description'}),
     hasLengthGreaterThan(4)({message: 'Description needs to be at least 5 characters'})
-  )(),//import {PlaceInput} from '../../../app/common/form/PlaceInput';
+  )(),
   price: isRequired('city'),
   quantity: isRequired('venue'),
   photoURL: isRequired('date')
 })
 
-class DishForm extends Component {
+class DeliverboyForm extends Component {
 
-  states = {
-    addressLatLng : {}
-  }
-
-  handleCitySelect = ( selectedCity) => {
-    geocodeByAddress(selectedCity)
-    .then(results => getLatLng(results[0]))
-    .then(latlng => {
-      this.setState({
-      addressLatLng : latlng
-    })
-  })
-  }
   onFormSubmit = values => {
     values.date = moment(values.date).format()
-  
-      const newDish = {
+    if (this.props.initialValues.id) {
+      this.props.updateDish(values);
+      this.props.history.goBack();
+    } else {
+      const newEvent = {
         ...values,
         id: cuid(),
         photoURL: '/assets/user.png',
         
       };
-      this.props.createDish(newDish);
-      this.props.history.push('/dishdashboard');
-    
+      this.props.createDish(newDboy);
+      this.props.history.push('/dboydashboard');
+    }
   };
 
   render() {
@@ -88,15 +75,13 @@ class DishForm extends Component {
       <Grid>
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color='teal' content='Dish Details'floated='right' size='large'/>
-            <Divider />
+            <Header sub color='teal' content='Deliverboy Details'floated='right' size='large'/>
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
                 name="title"
                 type="text"
                 component={TextInput}
-                placeholder="Give your dish a name"
-                
+                placeholder="Give your Deliverboy a name"
               />
               <Field
                 name="category"
@@ -112,7 +97,7 @@ class DishForm extends Component {
                 rows={3}
                 placeholder="Tell us about your dish"
               />
-              <Header sub color='teal' content='Dish details' floated='right' size='large'/>
+              <Header sub color='teal' content='Dish details'floated='right' size='large'/>
               <Field
                 name="price"
                 type="text"
@@ -149,5 +134,5 @@ class DishForm extends Component {
 }
 
 export default connect(mapState, actions)(
-  reduxForm({ form: 'dishForm', enableReinitialize: true, validate })(DishForm)
+  reduxForm({ form: 'dboyForm', enableReinitialize: true, validate })(DeliverboyForm)
 );

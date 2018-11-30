@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment,Button, Form, Comment, Header } from 'semantic-ui-react';
+import { Segment,Button, Form, Comment, Header } from 'semantic-ui-react'
 
 export const PeopleDetailChat = () => {
   return (
@@ -11,7 +11,7 @@ export const PeopleDetailChat = () => {
         color="teal"
         style={{ border: 'none' }}
       >
-        <Header>Chat about this customer</Header>
+        <Header>Chat about this People</Header>
       </Segment>
 
       <Segment attached>
@@ -91,4 +91,4 @@ export const PeopleDetailChat = () => {
     </div>
   );
 };
-
+//export default DishDetailChat;

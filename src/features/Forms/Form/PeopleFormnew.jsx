@@ -1,78 +1,3 @@
-// import React, { Component } from 'react';
-// import { Segment, Form, Button } from 'semantic-ui-react';
-// import { reduxForm, Field } from 'redux-form';
-// import TextInput from '../../../app/common/Form/TextInput'
-// //import SelectInput from '../../../app/common/Form/SelectInput';
-// import DateInput from '../../../app/common/Form/DateInput';
-// //import TextArea from '../../../app/common/Form/TextArea';
-
-
-// const emptyForm = {
-//   fname: '',
-//   lname: '',
-//   dob: '',
-//   address: '',
-//   uname: '',
-//   pass: ''
-// }
-
-
-// class PeopleForm extends Component {
-//   state = {
-//     people: emptyForm
-//   };
-
-
-
-
-
-
-//   onFormSubmit = (ppl) => {
-//     ppl.preventDefault();
-//     if (this.state.people.id) {
-//       this.props.updatePeople(this.state.people);
-
-//     } else {
-//       this.props.createPeople(this.state.people);
-//     }
-//   }
-
-//   render() {
-//     const { handleCancel } = this.props;
-//     const { people } = this.state;
-//     return (
-//       <Segment>
-//         <Form onSubmit={this.onFormSubmit}>
-
-
-
-//           <Field name="fname" value={people.fname} component={TextInput} placeholder="First Name" />
-
-//           <Field name="lname" value={people.lname} component={TextInput} placeholder="Last Name" />
-
-//           <Field name="dob" component={DateInput} value={people.dob} />
-
-//           <Field name="address" placeholder="Enter the Address" component={TextInput} value={people.address} />
-//           <Field name="uname" placeholder="Enter the Username" component={TextInput} value={people.uname} />
-
-//           <Field name="pass" placeholder="Enter the Password" value={people.pass} />
-
-//           <Button positive type="submit" >
-//             Submit
-//           </Button>
-//           <Button onClick={handleCancel} type="button" >Cancel</Button>
-//         </Form>
-//       </Segment>
-
-//     );
-//   }
-// }
-
-// export default (reduxForm({ form: 'peopleForm',enableReinitialize:'true' }))(PeopleForm);
-
-
-
-
 /* global google */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -125,7 +50,7 @@ const validate = combineValidators({
   )(),
 })
 
-class PeopleForm extends Component {
+class PeopleFormnew extends Component {
 
   states = {
     scriptLoaded: false,
@@ -262,5 +187,5 @@ handleScriptLoad = () => this.setState({
 }
 
 export default connect(mapState, actions)(
-  reduxForm({ form: 'peopleForm', enableReinitialize: true, validate })(PeopleForm)
+  reduxForm({ form: 'peopleForm', enableReinitialize: true, validate })(PeopleFormnew)
 );

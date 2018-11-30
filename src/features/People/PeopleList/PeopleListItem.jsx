@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { Segment, Item, Button } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+import { format } from 'date-fns';
 class PeopleListItem extends Component {
   render() {
-    const {peoples, deletePeople } = this.props;
+    const {people, deletePeople } = this.props;
     return (
       <Segment.Group>
         <Segment>
           <Item.Group>
             <Item>
-              
+              <Item.Image size="small" circular src={people.photoURL} />
               <Item.Content>
-                <Item.Header as="a">{peoples.fname} {peoples.lname}</Item.Header>
+                <Item.Header as="a">{people.fname} {people.lname}</Item.Header>
                 <Item.Description>
-                  City <a>{peoples.city}</a>
+                 <span>DOB : {format(people.DOB.toDate(), 'dddd Do MMMM')}</span>
                 </Item.Description>
               </Item.Content>
             </Item>
@@ -21,9 +22,9 @@ class PeopleListItem extends Component {
         </Segment>
  
         <Segment clearing>
-        <span>{peoples.address}</span>
-        <Button onClick={deletePeople(peoples.id)} as="a" color="red" floated="right" content="Delete" />
-        <Button as={Link} to={`/people/${peoples.id}`}color="teal" floated="right" content="View" />
+        <span>{people.address} {people.city} {people.state} {people.country} </span>
+        <Button onClick={deletePeople(people.id)} as="a" color="red" floated="right" content="Delete" />
+        <Button as={Link} to={`/people/${people.id}`}color="teal" floated="right" content="View" />
           </Segment>
       </Segment.Group>
     );

@@ -8,12 +8,12 @@ import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan 
 import { createPeople, updatePeople } from '../peopleAction';
 import TextInput from '../../../app/common/Form/TextInput';
 import TextArea from '../../../app/common/Form/TextArea';
-//import SelectInput from '../../../app/common/Form/SelectInput';
-//import {DateInput} from '../../../app/common/form/DateInput';
+import SelectInput from '../../../app/common/Form/SelectInput';
+
 
 const mapState = (state, ownProps) => {
   const peopleId = ownProps.match.params.id;
-  module
+
   let people = {};
 
   if (peopleId && state.people.length > 0) {
@@ -21,7 +21,7 @@ const mapState = (state, ownProps) => {
   }
 
   return {
-    initialValues: {people}
+    initialValues: people
   };
 };
 
@@ -30,27 +30,24 @@ const actions = {
   updatePeople
 };
 
-// const category = [
-//     {key: 'Indian', text: 'Indian', value: 'Indian'},
-//     {key: 'Chineese', text: 'Chineese', value: 'Chineese'},
-//     {key: 'Italian', text: 'Italian', value: 'Italian'},
-//     {key: 'Mexican', text: 'Mexican', value: 'Mexican'},
-//     {key: 'Continental', text: 'Continental', value: 'Continental'}
-// ];
+const category = [
+    {key: 'Indian', text: 'Indian', value: 'Indian'},
+    {key: 'Chineese', text: 'Chineese', value: 'Chineese'},
+    {key: 'Italian', text: 'Italian', value: 'Italian'},
+    {key: 'Mexican', text: 'Mexican', value: 'Mexican'},
+    {key: 'Continental', text: 'Continental', value: 'Continental'}
+];
 
 const validate = combineValidators({
-  fname: isRequired({message: 'The chef first name is required'}),
-  lname: isRequired({message: 'The chef last name is required'}),
-  
-  dob: isRequired({message: 'Please provide Date of Birth'}),
-  address: isRequired('address'),
-  city: isRequired('city'),
-  uname: isRequired('uname'),
-  pass: composeValidators(
-    isRequired({message: 'Please enter a address'}),
-    hasLengthGreaterThan(4)({message: 'Address needs to be at least 5 characters'})
+  title: isRequired({message: 'The event title is required'}),
+  category: isRequired({message: 'Please provide a category'}),
+  description: composeValidators(
+    isRequired({message: 'Please enter a description'}),
+    hasLengthGreaterThan(4)({message: 'Description needs to be at least 5 characters'})
   )(),
-  
+  price: isRequired('city'),
+  quantity: isRequired('venue'),
+  photoURL: isRequired('date')
 })
 
 class PeopleForm extends Component {
@@ -78,58 +75,49 @@ class PeopleForm extends Component {
       <Grid>
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color='teal' content='Chef Details'/>
+            <Header sub color='teal' content='People Details'floated='right' size='large'/>
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
-                name="fname"
+                name="title"
                 type="text"
                 component={TextInput}
-                placeholder="Give chef first name"
+                placeholder="Give your People a name"
               />
               <Field
-                name="lname"
+                name="category"
                 type="text"
-                component={TextInput}
-                placeholder="Give chef last name"
+                component={SelectInput}
+                options={category}
+                placeholder="What is category of your dish"
               />
-              
               <Field
-                name="dob"
-                type="date"
-                //component={DateInput}
-                
-                placeholder="What is your dob"
-              />
-
-              <Header sub color='teal' content='Event Location details'/>
-              
-              <Field
-                name="address"
+                name="description"
                 type="text"
                 component={TextArea}
                 rows={3}
-                placeholder="Tell us where do u live"
+                placeholder="Tell us about your dish"
               />
+              <Header sub color='teal' content='Dish details'floated='right' size='large'/>
               <Field
-                name="city"
+                name="price"
                 type="text"
                 component={TextInput}
-                placeholder="City"
+                placeholder="Price"
               />
               <Field
-                name="uname"
+                name="quantity"
                 type="text"
                 component={TextInput}
-                placeholder="User Name"
+                placeholder="Quantity"
               />
               <Field
-                name="pass"
-                type="password"
-                //component={TextInput}
+                name="photoURL"
+                type="text"
+                component={TextInput}
                 //dateFormat='YYYY-MM-DD HH:mm'
                 //timeFormat='HH:mm'
                 //showTimeSelect
-                placeholder="Enter Password"
+                placeholder="Enter URL of your photo"
               />
               <Button disabled={invalid || submitting || pristine} positive type="submit">
                 Submit

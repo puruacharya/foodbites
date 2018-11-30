@@ -1,7 +1,7 @@
 import { PeopleDetailChat } from "./PeopleDetailChat";
 import PeopleDetailHeader from "./PeopleDetailHeader";
-import { PeopleDetailSidebar } from "./PeopleDetailSidebar";
-//import {PeopleDetailInfo}  from "./PeopleDetailInfo";
+import {PeopleDetailSidebar}  from "./PeopleDetailSidebar";
+import { PeopleDetailInfo } from "./PeopleDetailInfo";
 import { Grid } from "semantic-ui-react";
 import React from 'react';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 const mapState = (state,ownProps) => {
     const peopleId = ownProps.match.params.id;
 
-    let people = {
+    let people= {
 
     };
 
@@ -17,8 +17,8 @@ const mapState = (state,ownProps) => {
         people = state.people.filter(people => people.id === peopleId)[0];
     }
 
-    return { people };
-};
+    return {people};
+}
 
 const PeopleDetailPage = ({people})  => {
 
@@ -26,14 +26,14 @@ const PeopleDetailPage = ({people})  => {
         <Grid>
             <Grid.Column width={10}>
                 <PeopleDetailHeader people={people} />
-                {/* <PeopleDetailInfo people={people} /> */}
+                <PeopleDetailInfo people={people} />
                 <PeopleDetailChat />
             </Grid.Column>
             <Grid.Column width={6}>
                 <PeopleDetailSidebar address={people.address} />
             </Grid.Column>
         </Grid>
-    );
+    )
 };
 
 

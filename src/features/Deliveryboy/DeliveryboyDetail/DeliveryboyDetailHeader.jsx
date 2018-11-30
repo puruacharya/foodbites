@@ -1,10 +1,11 @@
-  import React from 'react';
+import React from 'react';
 import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
-const deliveryboyImageStyle = {
+import { Link } from 'react-router-dom';
+const dboyImageStyle = {
     filter: 'brightness(30%)'
 };
 
-const deliveryboyImageTextStyle = {
+const dboyImageTextStyle = {
     position: 'absolute',
     bottom: '5%',
     left: '5%',
@@ -12,33 +13,39 @@ const deliveryboyImageTextStyle = {
     height: 'auto',
     color: 'white'
 };
-const DeliveryboyDetailHeader = ({dboy}) => {
+const DeliverboyDetailHeader = ({dboy}) => {
     return (
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
-                <Button ><Image src='{}' alt="pic" fluid style={deliveryboyImageStyle}/>
-       </Button>
-                <Segment basic style={deliveryboyImageTextStyle}>
+                <Image src={dboy.photoURL} circular size='medium'  style={dboyImageStyle}/>
+        
+                <Segment basic style={dboyImageTextStyle}>
                   <Item.Group>
                     <Item>
                       <Item.Content>
                         <Header
                           size="huge"
-                          content={dboy.fname  + dboy.lname}
-                          style={{ color: 'black' }}
+                          
+                         
                         />
-                        <p>{dboy.dob}</p>
-                        <p style={{color:'black'}}>
-                          nationality <strong>{dboy.nationality}</strong>
-                        </p>
-                      </Item.Content>
+                        <h1 style={{ color: 'black' }}>{dboy.fname} {dboy.lname}</h1>
+                        
+                        </Item.Content>
                     </Item>
                   </Item.Group>
                 </Segment>
               </Segment>
         
-                        </Segment.Group>
+              <Segment attached="bottom">
+                <Button>Message</Button>
+                
+        
+                <Button as={Link} to={`/createdboy/${dboy.id}`}color="orange" floated="right">
+                  Manage Delivery boy
+                </Button>
+              </Segment>
+            </Segment.Group>
     );
 };
 
-export default DeliveryboyDetailHeader;
+export default DeliverboyDetailHeader;
