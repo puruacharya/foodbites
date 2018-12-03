@@ -2,6 +2,8 @@ import { CREATE_PEOPLE, DELETE_PEOPLE, UPDATE_PEOPLE, FETCH_PEOPLE} from './peop
 import { toastr } from 'react-redux-toastr';
 import { asyncActionStart,asyncActionFinish,asyncActionError } from '../async/asyncActions';
 import { fetchSampleData } from '../../app/data/mockAPI'
+import { getFirestore } from 'redux-firestore';
+import { createNewPeople } from '../../app/common/util/helper'
 //import { asyncActionStart, asyncActionFinish,asyncActionError } from '../async/asyncActions';
 export const fetchPeople = (peoples) => {
     return {
@@ -12,16 +14,17 @@ export const fetchPeople = (peoples) => {
 
 
 export const createPeople = (people) => {
-    return async dispatch => {
+    return async (dispatch, getState, getFirestore) => {
+        const firestore = getFirestore();
+        const user = firestore.auth().currentUser;
+        const photoURL = getState().firebase.profile.photoURL;
+        let newPeople = createNewPeople(user, photoURL, people)
+
+        
         try{
-            dispatch({
-                type: CREATE_PEOPLE,
-                payload: {
-                    people
-                }
-        });
-        toastr.success("Successfully added")
-    }
+            await firestore.add('people', newPeople);
+            toastr.success('Success!', 'People has been created')
+        }
     catch (error){
             toastr.error("Something went wrong")    
         }
