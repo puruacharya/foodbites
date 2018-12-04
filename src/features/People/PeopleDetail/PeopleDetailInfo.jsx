@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment,Grid, Icon, Button } from 'semantic-ui-react'
+import { Segment,Grid, Icon, Button } from 'semantic-ui-react';
 export const PeopleDetailInfo = ({people}) => {
   return (
        <Segment.Group>

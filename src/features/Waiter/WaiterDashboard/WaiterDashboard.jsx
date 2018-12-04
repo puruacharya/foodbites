@@ -3,9 +3,9 @@ import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { deleteWaiter } from '../waiterAction';
 import WaiterList from '../WaiterList/WaiterList';
-
+import { firestoreConnect } from 'react-redux-firebase'
 const mapState = state => ({
-  waiter: state.waiter
+  waiter: state.firestore.ordered.waiters
 });
 
 const actions = {
@@ -32,4 +32,5 @@ class WaiterDashboard extends Component {
   }
 }
 
-export default connect(mapState, actions)(WaiterDashboard);
+export default connect(mapState, actions)
+(firestoreConnect([{ collection:'waiters' }])(WaiterDashboard));

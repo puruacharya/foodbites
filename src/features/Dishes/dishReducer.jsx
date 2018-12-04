@@ -5,7 +5,7 @@ import { CREATE_DISH, UPDATE_DISH, DELETE_DISH } from './dishConstant';
 
 const initialState = [
     {
-        id: '1',
+        
         title: 'Paav Bhaaji',
         quant: '5',
         cost: '400',
@@ -21,7 +21,7 @@ const initialState = [
     
       },
       {
-        id: '2',
+        
         title: 'Noodles',
         quant: '10',
         cost: '400',

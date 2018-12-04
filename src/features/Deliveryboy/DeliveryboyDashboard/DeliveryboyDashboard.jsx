@@ -3,10 +3,11 @@ import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { deleteDboy } from '../dboyAction';
 import DeliveryboyList from '../DeliveryboyList/DeliveryboyList';
-
+import { firestoreConnect } from 'react-redux-firebase'
 const mapState = state => ({
-  dboy: state.dboy
+  dboy: state.firestore.ordered.deliveryboys
 });
+
 
 const actions = {
   deleteDboy
@@ -32,4 +33,5 @@ class DeliveryboyDashboard extends Component {
   }
 }
 
-export default connect(mapState, actions)(DeliveryboyDashboard);
+export default connect(mapState, actions)
+(firestoreConnect([{ collection:'deliveryboys' }])(DeliveryboyDashboard));

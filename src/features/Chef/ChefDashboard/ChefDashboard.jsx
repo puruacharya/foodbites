@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { deleteChef } from '../chefAction';
-import ChefList from '../ChefList/ChefList';
-
+import { firestoreConnect } from 'react-redux-firebase'
+import  ChefList  from '../ChefList/ChefList'
 const mapState = state => ({
-  chef: state.chef
+  chef: state.firestore.ordered.chefs
 });
 
 const actions = {
@@ -32,4 +32,5 @@ class ChefDashboard extends Component {
   }
 }
 
-export default connect(mapState, actions)(ChefDashboard);
+export default connect(mapState, actions)
+(firestoreConnect([{ collection:'chefs' }])(ChefDashboard));

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Segment, Item, Button } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+import { format } from 'date-fns';
 class ChefListItem extends Component {
   render() {
     const {chef, deleteChef } = this.props;
@@ -11,9 +12,12 @@ class ChefListItem extends Component {
             <Item>
               <Item.Image size="small" circular src={chef.photoURL} />
               <Item.Content>
-                <Item.Header as="a">{chef.title}</Item.Header>
+                <Item.Header as="a">{chef.fname} {chef.lname}</Item.Header>
+
                 <Item.Description>
-                  Quantity <a>{chef.quantity}</a>
+                <span>DOB : {format(chef.DOB.toDate(), 'dddd Do MMMM YYYY')}</span>
+<p>Salary: {chef.salary}</p>
+<p>Category: {chef.category}</p>
                 </Item.Description>
               </Item.Content>
             </Item>

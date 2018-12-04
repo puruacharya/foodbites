@@ -24,7 +24,7 @@ class PeopleListItem extends Component {
         <Segment clearing>
         <span>{people.address} {people.city} {people.state} {people.country} </span>
         <Button onClick={deletePeople(people.id)} as="a" color="red" floated="right" content="Delete" />
-        <Button as={Link} to={`/people/${people.id}`}color="teal" floated="right" content="View" />
+        <Button people={people}as={Link} to={`/people/${people.id}`}color="teal" floated="right" content="View" />
           </Segment>
       </Segment.Group>
     );

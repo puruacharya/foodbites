@@ -67,13 +67,7 @@ class DishForm extends Component {
       this.props.updateDish(values);
       this.props.history.goBack();
     } else {
-        const newDish = {
-        ...values,
-        id: cuid(),
-        photoURL: '/assets/user.png',
-        
-      };
-        this.props.createDish(newDish);
+      this.props.createDish(values);
       this.props.history.push('/dishdashboard');
     }
   };

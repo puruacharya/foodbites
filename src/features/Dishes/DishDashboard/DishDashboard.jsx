@@ -3,9 +3,10 @@ import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { deleteDish } from '../dishAction';
 import DishesList from '../DishesList/DishesList';
+import { firestoreConnect } from 'react-redux-firebase'
 
 const mapState = state => ({
-  dishes: state.dish
+  dishes: state.firestore.ordered.dishes
 });
 
 const actions = {
@@ -32,4 +33,5 @@ class DishDashboard extends Component {
   }
 }
 
-export default connect(mapState, actions)(DishDashboard);
+export default connect(mapState, actions)
+(firestoreConnect([{ collection:'dishes' }])(DishDashboard));

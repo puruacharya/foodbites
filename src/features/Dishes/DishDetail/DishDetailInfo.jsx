@@ -9,7 +9,7 @@ export const DishDetailInfo = ({dish}) => {
                 <Icon size="large" color="teal" name="info" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <p>{dish.description}</p>
+                 <p>{dish.description}</p>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -19,7 +19,7 @@ export const DishDetailInfo = ({dish}) => {
                 <Icon name="money" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={15}>
-                <span>{dish.price}</span>
+                <span>{dish.cost}</span>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -29,7 +29,7 @@ export const DishDetailInfo = ({dish}) => {
                 <Icon name="marker" size="large" color="teal" />
               </Grid.Column>
               <Grid.Column width={11}>
-                <span>{dish.photoURL}</span>
+                
               </Grid.Column>
               <Grid.Column width={4}>
                 <Button color="teal" size="tiny" content="Show Map" />

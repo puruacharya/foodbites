@@ -17,7 +17,7 @@ const DishDetailHeader = ({dish}) => {
     return (
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
-                <Image src='{dish.hostPhotoURL}' alt="pic" fluid style={dishImageStyle}/>
+                <Image src='{dish.photoURL}' alt="pic" fluid style={dishImageStyle}/>
         
                 <Segment basic style={dishImageTextStyle}>
                   <Item.Group>

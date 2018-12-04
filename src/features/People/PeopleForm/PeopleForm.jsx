@@ -58,13 +58,7 @@ class PeopleForm extends Component {
       this.props.updatePeople(values);
       this.props.history.goBack();
     } else {
-      const newPeople = {
-        ...values,
-        id: cuid(),
-        photoURL: '/assets/user.png',
-        
-      };
-      this.props.createPeople(newPeople);
+      this.props.createPeople(values);
       this.props.history.push('/peopledashboard');
     }
   };

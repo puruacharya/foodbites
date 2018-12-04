@@ -11,9 +11,9 @@ class WaiterListItem extends Component {
             <Item>
               <Item.Image size="small" circular src={waiter.photoURL} />
               <Item.Content>
-                <Item.Header as="a">{waiter.title}</Item.Header>
+                <Item.Header as="a">{waiter.fname} {waiter.lname}</Item.Header>
                 <Item.Description>
-                  Quantity <a>{waiter.quantity}</a>
+                  Address <a>{waiter.address}</a>
                 </Item.Description>
               </Item.Content>
             </Item>

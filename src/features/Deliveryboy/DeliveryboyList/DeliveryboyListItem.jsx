@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Segment, Item, Button } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+import { format } from 'date-fns';
 class DeliveryboyListItem extends Component {
   render() {
     const {dboy, deleteDboy } = this.props;
@@ -11,9 +12,9 @@ class DeliveryboyListItem extends Component {
             <Item>
               <Item.Image size="small" circular src={dboy.photoURL} />
               <Item.Content>
-                <Item.Header as="a">{dboy.title}</Item.Header>
+                <Item.Header as="a">{dboy.fname} {dboy.lname} </Item.Header>
                 <Item.Description>
-                  Quantity <a>{dboy.quantity}</a>
+                <span>DOB : {format(dboy.DOB.toDate(), 'dddd Do MMMM YYYY')}</span>
                 </Item.Description>
               </Item.Content>
             </Item>

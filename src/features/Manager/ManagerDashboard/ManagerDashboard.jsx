@@ -3,9 +3,9 @@ import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { deleteManager } from '../managerAction';
 import ManagerList  from '../ManagerList/ManagerList';
-
+import { firestoreConnect } from 'react-redux-firebase'
 const mapState = state => ({
-  manager: state.manager
+  manager: state.firestore.ordered.manager
 });
 
 const actions = {
@@ -32,4 +32,6 @@ class ManagerDashboard extends Component {
   }
 }
 
-export default connect(mapState, actions)(ManagerDashboard);
+
+export default connect(mapState, actions)
+(firestoreConnect([{ collection:'manager' }])(ManagerDashboard));

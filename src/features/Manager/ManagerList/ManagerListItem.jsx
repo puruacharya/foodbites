@@ -9,7 +9,7 @@ class ManagerListItem extends Component {
         <Segment>
           <Item.Group>
             <Item>
-              
+            <Item.Image size="small" circular src={manager.photoURL} />
               <Item.Content>
                 <Item.Header as="a">{manager.fname} {manager.lname}</Item.Header>
                 <Item.Description>

@@ -22,7 +22,7 @@ export const createPeople = (people) => {
 
         
         try{
-            await firestore.add('people', newPeople);
+            let createdPeople = await firestore.add('people', newPeople);
             toastr.success('Success!', 'People has been created')
         }
     catch (error){
