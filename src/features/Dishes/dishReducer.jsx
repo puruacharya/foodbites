@@ -1,6 +1,6 @@
 import { createReducer} from '../../app/common/util/reducerUtil';
 
-import { CREATE_DISH, UPDATE_DISH, DELETE_DISH } from './dishConstant';
+import { CREATE_DISH, UPDATE_DISH, DELETE_DISH , FETCH_DISH} from './dishConstant';
 
 
 const initialState = [
@@ -54,11 +54,14 @@ export const deleteDish = (state, payload) => {
     return [...state.filter(dish => dish.id !== payload.dishId)];
 } ;
 
-
-
+export const fetchDish = (state, payload) => {
+    return payload.dish
+  }
+  
 export default createReducer(initialState, {
     [CREATE_DISH]: createDish,
     [UPDATE_DISH]: updateDish,
     [DELETE_DISH]: deleteDish,
+    [FETCH_DISH] : fetchDish
 
 });

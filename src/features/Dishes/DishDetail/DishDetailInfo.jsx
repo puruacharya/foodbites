@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment,Grid, Icon, Button } from 'semantic-ui-react'
+import { Segment,Grid, Icon, Button } from 'semantic-ui-react';
 export const DishDetailInfo = ({dish}) => {
   return (
        <Segment.Group>
@@ -9,7 +9,7 @@ export const DishDetailInfo = ({dish}) => {
                 <Icon size="large" color="teal" name="info" />
               </Grid.Column>
               <Grid.Column width={15}>
-                 <p>{dish.description}</p>
+                 <p>{dish.Description}</p>
               </Grid.Column>
             </Grid>
           </Segment>
@@ -26,14 +26,12 @@ export const DishDetailInfo = ({dish}) => {
           <Segment attached>
             <Grid verticalAlign="middle">
               <Grid.Column width={1}>
-                <Icon name="marker" size="large" color="teal" />
+              <a>Type</a>
               </Grid.Column>
-              <Grid.Column width={11}>
-                
+              <Grid.Column width={5}>
+                <span>{dish.type}</span>
               </Grid.Column>
-              <Grid.Column width={4}>
-                <Button color="teal" size="tiny" content="Show Map" />
-              </Grid.Column>
+              
             </Grid>
           </Segment>
         </Segment.Group>

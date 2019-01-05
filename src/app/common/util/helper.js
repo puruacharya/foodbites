@@ -1,4 +1,4 @@
-//import moment from 'moment';
+import moment from 'moment';
 export const createNewPeople = (user, photoURL, people) => {
     //people.date = moment(people.date).toDate();
     return {
@@ -7,12 +7,13 @@ export const createNewPeople = (user, photoURL, people) => {
         
     }
 }
-export const createNewDish= (photoURL, dish) => {
+export const createNewDish= (user,photoURL, dish) => {
     //people.date = moment(people.date).toDate();
     return {
-       ...dish, 
-       photoURL : photoURL || '/assets/user.png'
-        
+       ...dish,
+       manId : user.uid, 
+       photoURL : photoURL || '/assets/user.png',
+        created: Date.now()
     }
 }
 export const objectToArray = (object) => {

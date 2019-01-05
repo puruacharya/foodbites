@@ -12,34 +12,27 @@ import TextInput from '../../../app/common/Form/TextInput';
 import TextArea from '../../../app/common/Form/TextArea';
 import SelectInput from '../../../app/common/Form/SelectInput';
 
-import PlaceInput from '../../../app/common/Form/PlaceInput';
+import DateInput from '../../../app/common/Form/DateInput';
 const mapState = (state, ownProps) => {
-  const chefId = ownProps.match.params.id;
+  
 
   let chef = {};
 
-  if (chefId && state.chef.length > 0) {
-    chef = state.chef.filter(chef => chef.id === chefId)[0];
+  if (state.firestore.ordered.chefs && state.firestore.ordered.chefs[0]) {
+    chef = state.firestore.ordered.chefs[0];
   }
 
   return {
-    initialValues: {chef}
+    initialValues: chef,
+    chef
   };
 };
-
 const actions = {
   createChef,
   updateChef
   
 };
-//import {PlaceInput} from '../../../app/common/form/PlaceInput';
-const category = [
-    {key: 'Indian', text: 'Indian', value: 'Indian'},
-    {key: 'Chineese', text: 'Chineese', value: 'Chineese'},
-    {key: 'Italian', text: 'Italian', value: 'Italian'},
-    {key: 'Mexican', text: 'Mexican', value: 'Mexican'},
-    {key: 'Continental', text: 'Continental', value: 'Continental'}
-];
+
 
 const validate = combineValidators({
   title: isRequired({message: 'The event title is required'}),
@@ -52,22 +45,15 @@ const validate = combineValidators({
   quantity: isRequired('venue'),
   photoURL: isRequired('date')
 })
+const gen = [
+  {key: 'Male', text: 'Male', value: 'Male'},
+  {key: 'Female', text: 'Female', value: 'Female'},
+  {key: "Don't specify", text: "Don't specify", value: "Don't specify"}
+];
+
 
 class ChefFormnew extends Component {
 
-  states = {
-    addressLatLng : {}
-  }
-
-  handleCitySelect = ( selectedCity) => {
-    geocodeByAddress(selectedCity)
-    .then(results => getLatLng(results[0]))
-    .then(latlng => {
-      this.setState({
-      addressLatLng : latlng
-    })
-  })
-  }
   onFormSubmit = values => {
     values.date = moment(values.date).format()
     if (this.props.initialValues.id) {
@@ -89,44 +75,37 @@ class ChefFormnew extends Component {
     const {invalid, submitting, pristine} = this.props;
     return (
       <Grid>
+        <Grid.Column width={3}></Grid.Column>
         <Grid.Column width={10}>
           <Segment>
-            <Header sub color='teal' content='Dish Details'floated='right' size='large'/>
+            <Header sub color='teal' content='Chef Details'floated='right' size='large'/>
             <Divider />
             <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
               <Field
-                name="title"
+                name="fname"
                 type="text"
                 component={TextInput}
-                placeholder="Give your dish a name"
-                
+                placeholder="Whats your first name"
               />
+                     <Field
+                name="lname"
+                type="text"
+                component={TextInput}
+                placeholder="Whats your last name"
+              /> 
+              <Header sub color='teal' content='Personal details'floated='right' size='large'/>
               <Field
-                name="category"
+                name="gender"
                 type="text"
                 component={SelectInput}
-                options={category}
-                placeholder="What is category of your dish"
+                options={gen}
+                placeholder="Your Gender please"
               />
               <Field
-                name="description"
-                type="text"
-                component={TextArea}
-                rows={3}
-                placeholder="Tell us about your dish"
-              />
-              <Header sub color='teal' content='Dish details' floated='right' size='large'/>
-              <Field
-                name="price"
-                type="text"
-                component={TextInput}
-                placeholder="Price"
-              />
-              <Field
-                name="quantity"
-                type="text"
-                component={TextInput}
-                placeholder="Quantity"
+                name="dob"
+                type="date"
+                component={DateInput}
+                placeholder="Date of Birth"
               />
               <Field
                 name="photoURL"
@@ -135,8 +114,85 @@ class ChefFormnew extends Component {
                 //dateFormat='YYYY-MM-DD HH:mm'
                 //timeFormat='HH:mm'
                 //showTimeSelect
-                placeholder="Enter URL of your photo"
+                placeholder="Photo URL" />
+                <Field
+                name="nationality"
+                type="text"
+                component={TextInput}
+                //dateFormat='YYYY-MM-DD HH:mm'
+                //timeFormat='HH:mm'
+                //showTimeSelect
+                placeholder="Enter your nationality"
               />
+  
+                <Field
+                name="address"
+                type="text"
+                component={TextArea}
+                //dateFormat='YYYY-MM-DD HH:mm'
+                //timeFormat='HH:mm'
+                //showTimeSelect
+                placeholder="Enter your address"
+              />
+              <Field
+              name="city"
+              type="text"
+              component={TextInput}
+              //dateFormat='YYYY-MM-DD HH:mm'
+              //timeFormat='HH:mm'
+              //showTimeSelect
+              placeholder="Enter your City"
+            />
+
+              <Field
+              name="state"
+              type="text"
+              component={TextInput}
+              //dateFormat='YYYY-MM-DD HH:mm'
+              //timeFormat='HH:mm'
+              //showTimeSelect
+              placeholder="Enter your State"
+            />
+
+              <Field
+              name="country"
+              type="text"
+              component={TextInput}
+              //dateFormat='YYYY-MM-DD HH:mm'
+              //timeFormat='HH:mm'
+              //showTimeSelect
+              placehollikeder="Enter your Country"
+            />
+
+              <Field
+              name="nationality"
+              type="text"
+              component={TextInput}
+              //dateFormat='YYYY-MM-DD HH:mm'
+              //timeFormat='HH:mm'
+              //showTimeSelect
+              placeholder="Enter your nationality"
+            />
+              
+              <Header sub color='teal' content='Personal details'floated='right' size='large'/>
+              <Field
+              name="phone"
+              type="text"
+              component={TextInput}
+              //dateFormat='YYYY-MM-DD HH:mm'
+              //timeFormat='HH:mm'
+              //showTimeSelect
+              placeholder="Enter your phone"
+            /><Field
+            name="email"
+            type="text"
+            component={TextInput}
+            //dateFormat='YYYY-MM-DD HH:mm'
+            //timeFormat='HH:mm'
+            //showTimeSelect
+            placeholder="Enter your email address"
+          />
+
               <Button disabled={invalid || submitting || pristine} positive type="submit">
                 Submit
               </Button>
@@ -146,6 +202,7 @@ class ChefFormnew extends Component {
             </Form>
           </Segment>
         </Grid.Column>
+        <Grid.Column width={3}></Grid.Column>
       </Grid>
     );
   }

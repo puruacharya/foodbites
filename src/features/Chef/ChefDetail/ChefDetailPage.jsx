@@ -1,40 +1,68 @@
-import { ChefDetailChat } from "./ChefDetailChat";
 import ChefDetailHeader from "./ChefDetailHeader";
-import { ChefDetailSidebar } from "./ChefDetailSidebar";
 import { ChefDetailInfo } from "./ChefDetailInfo";
+import  ChefDetailSidebar  from "./ChefDetailSidebar";
 import { Grid } from "semantic-ui-react";
-import React from 'react';
+import React, { Component } from 'react';
+import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
- 
-const mapState = (state,ownProps) => {
-    const chefId = ownProps.match.params.id;
+import { compose } from 'redux';
+
+const mapState = (state, ownProps ) => {
+
 
     let chef = {
 
     };
 
-    if(chefId && state.chef.length > 0){
-        chef = state.chef.filter(chef => chef.id === chefId)[0];
-    }
+    if (state.firestore.ordered.chefs && state.firestore.ordered.chefs[0]) {
+        chef = state.firestore.ordered.chefs[0]}
 
-    return {chef};
+    
+
+    return { 
+        chef,
+        auth: state.firebase.auth,
+        
+   
+    };
 }
 
-const ChefDetailPage = ({chef})  => {
 
-    return (
-        <Grid>
-            <Grid.Column width={10}>
-                <ChefDetailHeader chef={chef} />
-                <ChefDetailInfo chef={chef} />
-                <ChefDetailChat />
-            </Grid.Column>
-            <Grid.Column width={6}>
-                <ChefDetailSidebar description={chef.description} />
-            </Grid.Column>
-        </Grid>
-    )
-};
+class ChefDetailPage extends Component {
+
+    async componentDidMount() {
+        const {firestore, match} = this.props;
+        await firestore.get(`chefs/${match.params.id}`);
+    }
+    async componentWillUnmount() {
+        const { firestore, match } = this.props;
+        await firestore.unsetListener(`chefs/${match.params.id}`);
+      }
+    render() {
+        const {chef} = this.props;
+        return (
+            <Grid>
+                <Grid.Column width ={1}>
+                </Grid.Column>
+                <Grid.Column width={10}>
+                    <ChefDetailHeader chef={chef} />
+                    <ChefDetailInfo chef={chef} />
+                
+                </Grid.Column>
+                <Grid.Column width={4}>
+                     <ChefDetailSidebar chef={chef} />
+                </Grid.Column>
+                
+                <Grid.Column width ={ 1}>
+                </Grid.Column>
+            </Grid>
+        );
+    }
+}
 
 
-export default connect(mapState)(ChefDetailPage);
+
+export default compose(
+    withFirestore,
+    connect(mapState, null),
+    )(ChefDetailPage);

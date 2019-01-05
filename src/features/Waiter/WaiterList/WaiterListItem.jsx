@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Segment, Item, Button } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+import { format } from 'date-fns';
 class WaiterListItem extends Component {
   render() {
     const {waiter, deleteWaiter } = this.props;
@@ -13,7 +14,16 @@ class WaiterListItem extends Component {
               <Item.Content>
                 <Item.Header as="a">{waiter.fname} {waiter.lname}</Item.Header>
                 <Item.Description>
-                  Address <a>{waiter.address}</a>
+                
+                  <p><a> Salary </a>: {waiter.salary}</p>
+                  <p><a> Address  </a>: <i>{waiter.address}, {waiter.city}, {waiter.state}, {waiter.country}</i></p>
+                                             <p><a> Gender </a>: {waiter.gender}</p>
+
+                  <p><a> Nationality </a>: {waiter.nationality}</p>
+                  <p> <a>DOB </a>: {format(waiter.DOB.toDate(), 'dddd Do MMMM')}</p>
+                  <p><a> Gender </a>: {waiter.gender}</p>
+                  
+                  
                 </Item.Description>
               </Item.Content>
             </Item>

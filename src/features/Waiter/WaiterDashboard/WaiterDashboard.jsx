@@ -21,10 +21,13 @@ class WaiterDashboard extends Component {
     const { waiter } = this.props;
     return (
       <Grid>
+                <Grid.Column width={3}>
+          
+          </Grid.Column>/>
         <Grid.Column width={10}>
           <WaiterList deleteWaiter={this.handleDeleteWaiter} waiter={waiter} />
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={3}>
           
         </Grid.Column>/>
       </Grid>

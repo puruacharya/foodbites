@@ -10,19 +10,20 @@ import { createDish, updateDish } from '../dishAction';
 import TextInput from '../../../app/common/Form/TextInput';
 import TextArea from '../../../app/common/Form/TextArea';
 import SelectInput from '../../../app/common/Form/SelectInput';
+import PlaceInput from '../../../app/common/Form/PlaceInput';
 
-  import PlaceInput from '../../../app/common/Form/PlaceInput';
 const mapState = (state, ownProps) => {
-  const dishId = ownProps.match.params.id;
+  
 
   let dish = {};
 
-  if (dishId && state.dish.length > 0) {
-    dish = state.dish.filter(dish => dish.id === dishId)[0];
+  if (state.firestore.ordered.dishes && state.firestore.ordered.dishes[0]) {
+    dish = state.firestore.ordered.dishes[0];
   }
 
   return {
-    initialValues: dish
+    initialValues: dish,
+    dish
   };
 };
 
@@ -87,14 +88,14 @@ class DishForm extends Component {
                   placeholder="Give your Dish a title"
               />
               <Field
-                name="category"
+                name="type  "
                 type="text"
                 component={SelectInput}
                 options={category}
                 placeholder="What is category of your dish"
               />
               <Field
-                name="description"
+                name="Description"
                 type="text"
                 component={TextArea}
                 rows={3}
@@ -108,7 +109,7 @@ class DishForm extends Component {
                 placeholder="Price"
               />
               <Field
-                  name="quant"
+                  name="quantity"
                   type="text"
                   component={TextInput}
                   placeholder="Quantity"

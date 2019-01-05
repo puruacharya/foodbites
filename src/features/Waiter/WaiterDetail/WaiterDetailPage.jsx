@@ -1,40 +1,68 @@
-import { WaiterDetailChat } from "./WaiterDetailChat";
 import WaiterDetailHeader from "./WaiterDetailHeader";
-import {WaiterDetailSidebar}  from "./WaiterDetailSidebar";
 import { WaiterDetailInfo } from "./WaiterDetailInfo";
+import  WaiterDetailSidebar  from "./WaiterDetailSidebar";
 import { Grid } from "semantic-ui-react";
-import React from 'react';
+import React, { Component } from 'react';
+import { withFirestore } from 'react-redux-firebase';
 import { connect } from 'react-redux';
- 
-const mapState = (state,ownProps) => {
-    const waiterId = ownProps.match.params.id;
+import { compose } from 'redux';
+
+const mapState = (state, ownProps ) => {
+
 
     let waiter = {
 
     };
 
-    if(waiterId && state.waiter.length > 0){
-        waiter = state.waiter.filter(waiter => waiter.id === waiterId)[0];
-    }
+    if (state.firestore.ordered.waiters && state.firestore.ordered.waiters[0]) {
+        waiter = state.firestore.ordered.waiters[0]}
 
-    return {waiter};
+    
+
+    return { 
+        waiter,
+        auth: state.firebase.auth,
+        
+   
+    };
 }
 
-const WaiterDetailPage = ({waiter})  => {
 
-    return (
-        <Grid>
-            <Grid.Column width={10}>
-                <WaiterDetailHeader waiter={waiter} />
-                <WaiterDetailInfo waiter={waiter} />
-                <WaiterDetailChat />
-            </Grid.Column>
-            <Grid.Column width={6}>
-                <WaiterDetailSidebar description={waiter.description} />
-            </Grid.Column>
-        </Grid>
-    )
-};
+class WaiterDetailPage extends Component {
+
+    async componentDidMount() {
+        const {firestore, match} = this.props;
+        await firestore.get(`waiters/${match.params.id}`);
+    }
+    async componentWillUnmount() {
+        const { firestore, match } = this.props;
+        await firestore.unsetListener(`waiters/${match.params.id}`);
+      }
+    render() {
+        const {waiter} = this.props;
+        return (
+            <Grid>
+                <Grid.Column width ={1}>
+                </Grid.Column>
+                <Grid.Column width={10}>
+                    <WaiterDetailHeader waiter={waiter} />
+                    <WaiterDetailInfo waiter={waiter} />
+                
+                </Grid.Column>
+                <Grid.Column width={4}>
+                     <WaiterDetailSidebar waiter={waiter} />
+                </Grid.Column>
+                
+                <Grid.Column width ={ 1}>
+                </Grid.Column>
+            </Grid>
+        );
+    }
+}
 
 
-export default connect(mapState)(WaiterDetailPage);
+
+export default compose(
+    withFirestore,
+    connect(mapState, null),
+    )(WaiterDetailPage);

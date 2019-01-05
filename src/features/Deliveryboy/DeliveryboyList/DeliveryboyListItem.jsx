@@ -14,7 +14,17 @@ class DeliveryboyListItem extends Component {
               <Item.Content>
                 <Item.Header as="a">{dboy.fname} {dboy.lname} </Item.Header>
                 <Item.Description>
-                <span>DOB : {format(dboy.DOB.toDate(), 'dddd Do MMMM YYYY')}</span>
+                
+                  <p><a> Salary </a>: {dboy.salary}</p>
+                  <p><a> Address  </a>: <i>{dboy.address}, {dboy.city}, {dboy.state}, {dboy.country}</i></p>
+
+                  <p><a> Phone </a>: {dboy.phone}</p>
+
+                  <p><a> Gender </a>: {dboy.gender}</p>
+
+                  <p><a> Nationality </a>: {dboy.nationality}</p>
+                  <p> <a>DOB </a>: {format(dboy.DOB.toDate(), 'dddd Do MMMM')}</p>
+                  
                 </Item.Description>
               </Item.Content>
             </Item>

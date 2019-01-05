@@ -21,10 +21,14 @@ class ChefDashboard extends Component {
     const { chef } = this.props;
     return (
       <Grid>
+        <Grid.Column width={3}>
+          
+          </Grid.Column>/>
+  
         <Grid.Column width={10}>
           <ChefList deleteChef={this.handleDeleteChef} chef={chef} />
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={3}>
           
         </Grid.Column>/>
       </Grid>

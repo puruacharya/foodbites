@@ -7,14 +7,6 @@ import TextArea from '../../../app/common/Form/TextArea';
 import PlaceInput from '../../../app/common/Form/PlaceInput';
 import SelectInput from '../../../app/common/Form/SelectInput';
 
-const interests = [
-  { key: 'drinks', text: 'Drinks', value: 'drinks' },
-  { key: 'culture', text: 'Culture', value: 'culture' },
-  { key: 'film', text: 'Film', value: 'film' },
-  { key: 'food', text: 'Food', value: 'food' },
-  { key: 'music', text: 'Music', value: 'music' },
-  { key: 'travel', text: 'Travel', value: 'travel' }
-];
 
 const AboutPage = ({ pristine, submitting,handleSubmit,updateProfile }) => {
   return (
@@ -44,21 +36,14 @@ const AboutPage = ({ pristine, submitting,handleSubmit,updateProfile }) => {
         <Divider />
         <label>Tell us about yourself</label>
         <Field name="about" component={TextArea} placeholder="About Me" />
+        
         <Field
-          name="interests"
-          component={SelectInput}
-          options={interests}
-          value="interests"
-          multiple={true}
-          placeholder="Select your interests"
-        />
-        <Field
-          width={8}
-          name="occupation"
-          type="text"
-          component={TextInput}
-          placeholder="Occupation"
-        />
+                name="address"
+                type="text"
+                component={TextArea}
+                rows={3}
+                placeholder="Tell us where do u live"
+              />
         <Field
           width={8}
           name="origin"

@@ -4,7 +4,7 @@ import NavBar from '../../features/Nav/NavBar/NavBar';
 
 //import ChefForm from '../../features/Chef/ChefForm/ChefForm';
 import DishDashboard from '../../features/Dishes/DishDashboard/DishDashboard';
-import SettingDashboard from '../../features/user/Settings/SettingDashboard';
+import SettingDashboard from '../../features/user/Setting/SettingDashboard';
 import {Container} from 'semantic-ui-react';
 import {Route , Switch} from 'react-router-dom';
 import TestComponent from '../../features/testarea/TestComponent';

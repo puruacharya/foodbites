@@ -9,9 +9,6 @@ const SignedInMenu = ({ signOut , profile}) => {
       <Image avatar spaced="right" src={profile.photoURL ||'/assets/user.png'} />
       <Dropdown pointing="top left" text={ profile.displayName }>
         <Dropdown.Menu>
-          <Dropdown.Item text="View My Wishlist" icon="calendar" />
-          <Dropdown.Item text="View My Cart" icon="users" />
-          <Dropdown.Item text="My Profile" icon="user" />
           <Dropdown.Item as ={Link} to= '/settings' text="Settings" icon="settings" />
           <Dropdown.Item onClick={signOut} text="Sign Out" icon="power" />
         </Dropdown.Menu>

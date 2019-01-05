@@ -2,7 +2,9 @@ import React from 'react';
 import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 const dboyImageStyle = {
-    filter: 'brightness(30%)'
+    filter: 'brightness(30%)',
+
+    
 };
 
 const dboyImageTextStyle = {
@@ -17,7 +19,7 @@ const DeliverboyDetailHeader = ({dboy}) => {
     return (
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
-                <Image src={dboy.photoURL} circular size='medium'  style={dboyImageStyle}/>
+                <Image src={dboy.photoURL} circular size='small' centered  style={dboyImageStyle}/>
         
                 <Segment basic style={dboyImageTextStyle}>
                   <Item.Group>

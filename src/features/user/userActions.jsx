@@ -96,4 +96,4 @@ export const updateProfile = (user) =>
         console.log(error);
         throw new Error('Problem setting main photo')
       }
-    }
+}

@@ -1,18 +1,26 @@
-import { CREATE_DISH, DELETE_DISH, UPDATE_DISH} from './dishConstant';
+import { CREATE_DISH, UPDATE_DISH , FETCH_DISH} from './dishConstant';
 import { toastr } from 'react-redux-toastr';
 import { createNewDish } from '../../app/common/util/helper';
 import firebase from '../../app/config/firebase';
-//import { asyncActionStart, asyncActionFinish,asyncActionError } from '../async/asyncActions';
+
+import { asyncActionStart, asyncActionFinish,asyncActionError } from '../async/asyncActions';
+export const fetchDish = (dish) => {
+    return {
+      type: FETCH_DISH,
+      payload: dish
+    };
+  };
+  
 export const createDish = (dish) => {
     return async (dispatch, getState, getFirestore) => {
         const firestore = getFirestore();
-        //const user = firestore.auth().currentUser;
+        const user = firestore.auth().currentUser;
         const photoURL = getState().firebase.profile.photoURL;
-        let newDish = createNewDish(photoURL, dish)
+        let newDish = createNewDish(user,photoURL, dish)
 
         
         try{
-            let createdDish = await firestore.add('dishes', newDish);
+            await firestore.add('dishes', newDish);
             toastr.success('Success!', 'People has been created')
         }
     catch (error){
@@ -30,22 +38,6 @@ export const updateDish = (dish) => {
                 }
         });
         toastr.success("Successfully updated")
-    }
-    catch (error){
-            toastr.error("Something went wrong")    
-        }
-    }
-};
-export const deleteDish = (dishId) => {
-    return async dispatch => {
-        try{
-            dispatch({
-                type: DELETE_DISH,
-                payload: {
-                    dishId
-                }
-        });
-        toastr.success("Successfully deleted")
     }
     catch (error){
             toastr.error("Something went wrong")    

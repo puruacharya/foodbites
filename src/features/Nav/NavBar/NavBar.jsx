@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Container, Button } from 'semantic-ui-react';
+import { Menu, Container, Button, Dropdown } from 'semantic-ui-react';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 import SignedOutMenu from '../Menus/SignedOutMenu';
 import SignedInMenu from '../Menus/SignedInMenu';
@@ -14,8 +14,8 @@ const actions = {
   
 }
 const mapState = (state) => ({
-  auth : state.firebase.auth,
-  profile : state.firebase.profile
+  auth: state.firebase.auth,
+  profile: state.firebase.profile
 })
 class NavBar extends Component {
   
@@ -50,8 +50,7 @@ class NavBar extends Component {
           <Menu.Item as={NavLink} to='/waiterdashboard' name="Waiter List" />
           <Menu.Item>
 
-            {authenticated &&
-              <Button floated="right" positive inverted content="View My Cart/Wishlist" />}
+           
           </Menu.Item>
           {authenticated ? <SignedInMenu profile = {profile} signOut={this.handleSignOut} /> : <SignedOutMenu signIn={this.handleSignIn} register={this.handleRegister} />}
 

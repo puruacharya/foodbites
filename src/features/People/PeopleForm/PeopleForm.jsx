@@ -75,7 +75,7 @@ class PeopleForm extends Component {
                 name="title"
                 type="text"
                 component={TextInput}
-                placeholder="Give your People a name"
+                placeholder="Whats your name"
               />
               <Field
                 name="category"

@@ -13,7 +13,12 @@ class DishesListItem extends Component {
               <Item.Content>
                 <Item.Header as="a">{dishes.title}</Item.Header>
                 <Item.Description>
-                  Quantity <a>{dishes.quantity}</a>
+                  <p><a> Type </a>: {dishes.type}</p>
+                  <p><a> Cost </a>: {dishes.cost}</p>
+                  <p><a>Description  </a>: <i>{dishes.Description}</i></p>
+                                             <p><a> Seasonal </a>: {dishes.seasonal}</p>
+                  
+                  
                 </Item.Description>
               </Item.Content>
             </Item>

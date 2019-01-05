@@ -17,21 +17,19 @@ const ChefDetailHeader = ({chef}) => {
     return (
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
-                <Image src='{chef.hostPhotoURL}' alt="pic" fluid style={chefImageStyle}/>
+                <Image src={chef.photoURL} alt="pic" fluid style={chefImageStyle} size="medium" centered/>
         
                 <Segment basic style={chefImageTextStyle}>
                   <Item.Group>
                     <Item>
                       <Item.Content>
                         <Header
-                          size="huge"
-                          content={chef.title}
+                          size="medium"
+                        
                           style={{ color: 'black' }}
                         />
-                        <p>{chef.category}</p>
-                        <p style={{color:'black'}}>
-                          Quantity <strong>{chef.quantity}</strong>
-                        </p>
+                        <h1 style={{color:'black'}}>{chef.fname} {chef.lname}</h1>
+                   
                       </Item.Content>
                     </Item>
                   </Item.Group>
@@ -39,11 +37,8 @@ const ChefDetailHeader = ({chef}) => {
               </Segment>
         
               <Segment attached="bottom">
-                <Button>Add to Cart</Button>
-                <Button color="teal">Add to Wishlist</Button>
-        
                 <Button as={Link} to={`/createchef/${chef.id}`}color="orange" floated="right">
-                  Manage Dish
+                  Manage Chef
                 </Button>
               </Segment>
             </Segment.Group>

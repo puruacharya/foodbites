@@ -21,10 +21,13 @@ class ManagerDashboard extends Component {
     const { manager } = this.props;
     return (
       <Grid>
+        <Grid.Column width={3}>
+          
+        </Grid.Column>/>
         <Grid.Column width={10}>
           <ManagerList deleteManager={this.handleDeleteManager} manager={manager} />
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={3}>
           
         </Grid.Column>/>
       </Grid>
